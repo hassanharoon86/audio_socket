@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ManagerControllerTest < ActionDispatch::IntegrationTest
+class AuditionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

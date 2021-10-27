@@ -1,0 +1,58 @@
+<section class="h-100 h-custom" style="background-color: #A9A9A9;">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center">
+      <div class="col-sm-4">
+        <br>
+        <div class="card">
+          <div class="card-body p-4 p-md-5">
+
+            <div class="d-flex justify-content-center">
+              <h2>Submit Audition</h2>
+            </div>
+
+            <br>
+
+            <%= form_with model: @audition do |f| %>
+              <%= render 'layouts/shared/flash' %>
+
+              <div class="mb-3">
+                <%= f.text_field :first_name, placeholder: "First Name", class: "form-control", autofocus: true, autocomplete: "first_name" %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control", autofocus: true, autocomplete: "last_name" %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.email_field :email, placeholder: "Email Address", class: "form-control", autofocus: true, autocomplete: "email" %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.text_field :artist_name, placeholder: "Artist Name", class: "form-control", autofocus: true, autocomplete: "artist_name" %>
+              </div>
+
+              # links to songs using cocoon<br><br>
+
+              <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+
+              <div class="mb-3 actions d-flex justify-content-center">
+                <%= f.submit nil, class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <%#= render "devise/shared/links" %>
+  </div>
+</section>
