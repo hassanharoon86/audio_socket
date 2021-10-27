@@ -33,16 +33,53 @@
 
               # links to songs using cocoon<br><br>
 
-              <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+              <!-- <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div> -->
+
+              <div class="mb-3 actions d-flex">
+                <%= f.select :genre, ['Select Genre',
+                  'Acapella',
+                  'Acid',
+                  'Jazz',
+                  'Acoustic',
+                  'Acid',
+                  'Acid Punk',
+                  'Alternative',
+                  'Hip Hop',
+                  'Ambient',
+                  'Avantgarde',
+                  'Bass',
+                  'Blues',
+                  'Cabaret',
+                  'Celtic Chamber',
+                  'Chanson',
+                  'Chorus',
+                  'Christian Rap',
+                  'Cinematic',
+                  'Classical',
+                  'Classic Rock',
+                  'Club',
+                  'Comedy',
+                  'Country',
+                  'Cult']%>
+              </div>
+
+              <div class="mb-3 actions d-flex">
+                <%= f.select :hear_about, ['How did you hear about us?',
+                  'Facebook', 'Instagram', 'Twitter', 'Other']%>
+              </div>
+
+              <div class="mb-3">
+                <%= f.text_field :additional_info, placeholder: "Any Additional info", class: "form-control", autofocus: true, autocomplete: "additional_info" %>
+              </div>
 
               <div class="mb-3 actions d-flex justify-content-center">
                 <%= f.submit nil, class: "btn btn-primary" %>
