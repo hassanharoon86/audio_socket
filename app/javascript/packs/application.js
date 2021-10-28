@@ -12,10 +12,23 @@
 // Turbolinks.start()
 // ActiveStorage.start()
 
-import 'bootstrap'
-import "chartkick/chart.js"
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
+
+import 'bootstrap'
+
+
+$(document).on('turbolinks:load', function () {
+    console.log('Turbolinks load');
+    $("#hear-about").on('change', function() {
+      if(this.value == 'Other'){
+        $('#other-field').fadeIn();
+      }
+      else{
+        $('#other-field').fadeOut();
+      }
+    });
+});

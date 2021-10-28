@@ -13,7 +13,8 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap/scss/bootstrap";
+
+@import "bootstrap/scss/bootstrap";
 
 @media (min-width: 1025px) {
   .h-custom {

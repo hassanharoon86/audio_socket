@@ -33,48 +33,18 @@
 
               # links to songs using cocoon<br><br>
 
-              <!-- <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </div> -->
-
+              Select Genre:
               <div class="mb-3 actions d-flex">
-                <%= f.select :genre, ['Select Genre',
-                  'Acapella',
-                  'Acid',
-                  'Jazz',
-                  'Acoustic',
-                  'Acid',
-                  'Acid Punk',
-                  'Alternative',
-                  'Hip Hop',
-                  'Ambient',
-                  'Avantgarde',
-                  'Bass',
-                  'Blues',
-                  'Cabaret',
-                  'Celtic Chamber',
-                  'Chanson',
-                  'Chorus',
-                  'Christian Rap',
-                  'Cinematic',
-                  'Classical',
-                  'Classic Rock',
-                  'Club',
-                  'Comedy',
-                  'Country',
-                  'Cult']%>
+                <%= f.select :genre, Audition::GENRES, {}, class: "form-control", autofocus: true, autocomplete: "genre" %>
               </div>
 
+              How did you hear about us?
               <div class="mb-3 actions d-flex">
-                <%= f.select :hear_about, ['How did you hear about us?',
-                  'Facebook', 'Instagram', 'Twitter', 'Other']%>
+                <%= f.select :hear_about, Audition::SOURCES, {}, class: "form-control", id: "hear-about", autofocus: true, autocomplete: "hear_about" %>
+              </div>
+
+              <div class="mb-3", id="other-field" style="display: none;">
+                <%= f.text_field :other_source, placeholder: "Other", class: "form-control", autofocus: true, autocomplete: "other_source" %>
               </div>
 
               <div class="mb-3">
@@ -89,7 +59,5 @@
         </div>
       </div>
     </div>
-
-  <%#= render "devise/shared/links" %>
   </div>
 </section>
