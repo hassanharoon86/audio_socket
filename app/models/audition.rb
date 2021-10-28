@@ -4,4 +4,7 @@ class Audition < ApplicationRecord
     'Classic Rock', 'Club', 'Comedy', 'Country', 'Cult' ]
 
   SOURCES = ['Facebook', 'Instagram', 'Twitter', 'Other']
+
+  has_many :links
+  accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: :true
 end

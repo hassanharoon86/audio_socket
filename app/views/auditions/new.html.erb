@@ -5,56 +5,11 @@
         <br>
         <div class="card">
           <div class="card-body p-4 p-md-5">
-
             <div class="d-flex justify-content-center">
               <h2>Submit Audition</h2>
             </div>
-
             <br>
-
-            <%= form_with model: @audition do |f| %>
-              <%= render 'layouts/shared/flash' %>
-
-              <div class="mb-3">
-                <%= f.text_field :first_name, placeholder: "First Name", class: "form-control", autofocus: true, autocomplete: "first_name" %>
-              </div>
-
-              <div class="mb-3">
-                <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control", autofocus: true, autocomplete: "last_name" %>
-              </div>
-
-              <div class="mb-3">
-                <%= f.email_field :email, placeholder: "Email Address", class: "form-control", autofocus: true, autocomplete: "email" %>
-              </div>
-
-              <div class="mb-3">
-                <%= f.text_field :artist_name, placeholder: "Artist Name", class: "form-control", autofocus: true, autocomplete: "artist_name" %>
-              </div>
-
-              # links to songs using cocoon<br><br>
-
-              Select Genre:
-              <div class="mb-3 actions d-flex">
-                <%= f.select :genre, Audition::GENRES, {}, class: "form-control", autofocus: true, autocomplete: "genre" %>
-              </div>
-
-              How did you hear about us?
-              <div class="mb-3 actions d-flex">
-                <%= f.select :hear_about, Audition::SOURCES, {}, class: "form-control", id: "hear-about", autofocus: true, autocomplete: "hear_about" %>
-              </div>
-
-              <div class="mb-3", id="other-field" style="display: none;">
-                <%= f.text_field :other_source, placeholder: "Other", class: "form-control", autofocus: true, autocomplete: "other_source" %>
-              </div>
-
-              <div class="mb-3">
-                <%= f.text_field :additional_info, placeholder: "Any Additional info", class: "form-control", autofocus: true, autocomplete: "additional_info" %>
-              </div>
-
-              <div class="mb-3 actions d-flex justify-content-center">
-                <%= f.submit nil, class: "btn btn-primary" %>
-              </div>
-            <% end %>
+            <%= render 'form' %>
           </div>
         </div>
       </div>
