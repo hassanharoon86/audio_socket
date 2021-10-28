@@ -21,7 +21,6 @@
     <%= f.text_field :artist_name, placeholder: "Artist Name", class: "form-control", autofocus: true, autocomplete: "artist_name" %>
   </div>
 
-
   <%= f.fields_for :links do |link| %>
     <%= render 'link_fields', f: link %>
   <%end %>
