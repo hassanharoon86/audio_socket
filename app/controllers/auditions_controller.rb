@@ -6,7 +6,6 @@ class AuditionsController < ApplicationController
 
   def create
     @audition = Audition.new(audition_params)
-    byebug
     if @audition.save
       redirect_to root_path
     end
