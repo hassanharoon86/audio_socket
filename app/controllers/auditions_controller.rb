@@ -14,7 +14,5 @@ class AuditionsController < ApplicationController
   private
   def audition_params
     params.require(:audition).permit(:first_name, :last_name, :email, :artist_name, :genre, :hear_about, :additional_info, :other_source, links_attributes: [:id, :link, :_destroy])
-
-    # params.require(:audition).permit(:first_name, :last_name, :email, :artist_name, :genre, :hear_about, :additional_info, :other_source, links_attributes: %i[id link _destroy])
   end
 end
