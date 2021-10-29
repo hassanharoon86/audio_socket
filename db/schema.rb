@@ -15,6 +15,11 @@ ActiveRecord::Schema.define(version: 2021_10_29_053315) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "artists", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "auditions", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -34,6 +39,11 @@ ActiveRecord::Schema.define(version: 2021_10_29_053315) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["audition_id"], name: "index_links_on_audition_id"
+  end
+
+  create_table "managers", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
