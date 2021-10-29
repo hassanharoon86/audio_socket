@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.new
+user.email = 'manager@audiosocket.com'
+user.password = 'Password123!@#'
+user.password_confirmation = 'Password123!@#'
+user.role = 1
+user.save!
