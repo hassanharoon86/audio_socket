@@ -31,7 +31,7 @@
 
   Select Genre:
   <div class="mb-3 actions d-flex">
-    <%= f.select :genre, Audition::GENRES, {}, class: "form-control", autofocus: true, autocomplete: "genre" %>
+    <%= f.select :genres, Audition::GENRES, {}, class: "form-control", autofocus: true, autocomplete: "genres", multiple: true, include_blank: false, include_hidden: false %>
   </div>
 
   How did you hear about us?
