@@ -13,6 +13,7 @@ class AuditionsController < ApplicationController
   end
 
   private
+
   def audition_params
     params.require(:audition).permit(:first_name, :last_name, :email, :artist_name, :hear_about, :additional_info, :other_source, links_attributes: [:id, :link, :_destroy], genres: [])
   end

@@ -7,9 +7,8 @@ class Audition < ApplicationRecord
 
   SOURCES = ['Facebook', 'Instagram', 'Twitter', 'Other']
 
-  validates :first_name, presence: true ,length: { maximum: 30 },format: { with: /\A[a-zA-Z]+\z/, message: "No special characters allowed" }
-  validates :last_name, presence: true ,length: { maximum: 30 },format: { with: /\A[a-zA-Z]+\z/, message: "No special characters allowed" }
-  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :first_name, :last_name , length: { maximum: 30 },format: { with: /\A[a-zA-Z]+\z/, message: "No special characters allowed" }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, :last_name, :email, :artist_name, :links, :genres, :hear_about, presence: true
 
   has_many :links, dependent: :destroy
