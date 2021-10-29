@@ -2,6 +2,7 @@
   <h2>Submit Audition</h2>
 </div>
 <br>
+
 <%= form_with model: @audition do |f| %>
   <%= render 'layouts/shared/flash' %>
 
@@ -23,7 +24,7 @@
 
   <%= f.fields_for :links do |link| %>
     <%= render 'link_fields', f: link %>
-  <%end %>
+  <% end %>
 
   <div class="mb-3 actions d-flex justify-content-end" id="add-link">
     <%= link_to_add_association 'Add link', f, :links, class: 'btn btn-outline-secondary' %><br>

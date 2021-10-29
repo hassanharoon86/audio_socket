@@ -1,4 +1,5 @@
 class AuditionsController < ApplicationController
+
   def new
     @audition = Audition.new
     @links = @audition.links.build

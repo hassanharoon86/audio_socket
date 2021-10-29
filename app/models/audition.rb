@@ -15,7 +15,6 @@ class Audition < ApplicationRecord
   has_many :links, dependent: :destroy
   accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: :true
 
-
   def remove_empty_genre
     genres.reject! { |g| g.empty? }
   end
