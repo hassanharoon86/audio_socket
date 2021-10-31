@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_29_053315) do
+ActiveRecord::Schema.define(version: 2021_10_31_180041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artists", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "auditions", force: :cascade do |t|
     t.string "first_name"
@@ -26,11 +31,20 @@ ActiveRecord::Schema.define(version: 2021_10_29_053315) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "other_source"
     t.string "genres", array: true
+    t.integer "status"
   end
 
   create_table "links", force: :cascade do |t|
     t.string "link"
     t.bigint "audition_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["audition_id"], name: "index_links_on_audition_id"
+  end
+
+  create_table "managers", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

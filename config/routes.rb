@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  # get 'managers/index'
   devise_for :users
-  root to: 'home#index'
 
   resources :artists
-  resources :managers
+  resources :managers, only: [:index]
   resources :auditions, only: [:new, :create]
+
+  root to: 'home#index'
 end
