@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_action :set_default_role
+
   enum role: [:artist, :manager]
 
   devise :database_authenticatable, :registerable,
@@ -9,6 +11,6 @@ class User < ApplicationRecord
   validates :terms_of_service, acceptance: true
 
   def set_default_role
-    self.role ||= :manager
+    self.role ||= :artist
   end
 end
