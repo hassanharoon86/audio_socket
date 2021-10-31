@@ -1,7 +1,7 @@
 class Audition < ApplicationRecord
   before_validation :remove_empty_genre, :set_default_status
 
-  enum status: [:pending, :accepted, :rejected, :deleted]
+  enum status: [:Pending, :Accepted, :Rejected, :Deleted]
 
   GENRES = ['Acapella', 'Acid', 'Jazz', 'Acoustic', 'Acid', 'Acid Punk', 'Alternative', 'Hip Hop', 'Ambient',
     'Avantgarde', 'Bass', 'Blues', 'Cabaret', 'Celtic Chamber', 'Chanson', 'Chorus', 'Christian Rap', 'Cinematic', 'Classical',
@@ -23,6 +23,6 @@ class Audition < ApplicationRecord
   end
 
   def set_default_status
-    self.status ||= :pending
+    self.status ||= :Pending
   end
 end

@@ -4,8 +4,17 @@
   <td><%= audition.first_name + " " + audition.last_name %></td>
   <td><%= audition.artist_name %></td>
   <td><%= audition.email %></td>
-  <td><%= audition.genres %></td>
-  <td><%= audition.created_at %></td>
+  <td>
+    <% audition.genres.each do |genre| %>
+      <% if !(genre.equal?(audition.genres.last)) %>
+        <%= genre + "," %>
+      <% else %>
+        <%= genre %>
+      <% end %>
+    <% end %>
+
+  </td>
+  <td><%= audition.created_at.to_date.strftime("%d %b %Y %H:%M %p") %></td>
   <td><%= render audition.links %></td>
   <td><%= audition.status %></td>
 
