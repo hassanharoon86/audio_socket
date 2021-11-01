@@ -1,4 +1,8 @@
 class Audition < ApplicationRecord
+
+  include PgSearch::Model
+  pg_search_scope :search, against: [:first_name, :last_name, :artist_name, :email, :genres], using: :tsearch
+
   before_validation :remove_empty_genre, :set_default_status
 
   enum status: [:Pending, :Accepted, :Rejected, :Deleted]

@@ -1,7 +1,14 @@
 <div class="container">
   <br>
 
-  <table class="table table-bordered table-color">
+  <div class="col-md-4">
+  <%= form_with(url: managers_path, method: :get) do |f| %>
+    <%= f.text_field :query, class: 'search-bar', placeholder: 'Search by Name, Artist, Email or Genres' %>
+    <%= f.submit "Search", class: 'btn btn-secondary' %>
+  <% end %>
+  </div><br>
+
+  <table class="table table-bordered table-striped table-hover table-color">
     <caption>List of Auditions</caption>
     <thead class="thead-dark">
       <th scope="col">ID</th>
@@ -10,8 +17,8 @@
       <th scope="col">EMAIL</th>
       <th scope="col">GENRES</th>
       <th scope="col">SUBMITTED</th>
-      <th scope="col">LINKS</th>
-      <!-- <th scope="col">ASSIGNED TO</th> -->
+      <!-- <th scope="col">LINKS</th> -->
+      <th scope="col">ASSIGNED TO</th>
       <th scope="col">STATUS</th>
       <!-- <th colspan="6"></th> -->
     </thead>

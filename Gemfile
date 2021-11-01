@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 # For nested forms
 gem 'cocoon'
+# For implementing search functionality
+gem 'pg_search'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
