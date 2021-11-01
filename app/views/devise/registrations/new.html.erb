@@ -1,0 +1,53 @@
+<section class="h-custom">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center">
+      <div class="col-sm-4">
+        <br>
+        <div class="card">
+          <div class="card-body p-4 p-md-5">
+            <div class="d-flex justify-content-center">
+              <h2>Sign up</h2>
+            </div>
+            <br>
+
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+
+              <div class="mb-3">
+                <%= f.email_field :email, placeholder: "Email", class: "form-control", autofocus: true, autocomplete: "email" %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.password_field :password, placeholder: "Password", class: "form-control", autocomplete: "new-password" %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control", autocomplete: "new-password" %>
+              </div>
+
+              <div class="form-radio d-flex justify-content-center">
+                <div class="form-flex">
+                    <%= f.radio_button :role, "artist" %>
+                    <%= f.label :role_artist, "Artist" %>
+
+                    <%= f.radio_button :role, "manager" %>
+                    <%= f.label :role_manager, "Manager" %>
+                </div>
+              </div>
+
+              <div class="mb-3 d-flex  align-content-center">
+                <div><%= f.check_box :terms_of_service%></div>
+
+                <div class="style-me"><%= f.label "By clicking here, you agree to our Customer Agreement" %></div>
+              </div>
+
+              <div class="mb-3 actions d-flex justify-content-center">
+                <%= f.submit "Sign up", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
