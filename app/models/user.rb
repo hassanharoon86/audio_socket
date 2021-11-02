@@ -1,16 +1,18 @@
 class User < ApplicationRecord
-  before_create :set_default_role
 
-  enum role: [:artist, :manager]
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   PASSWORD_REGEX = /(?=.{8,})(?=.*[A-Z])(?=.*[[:^alnum:]])/
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  enum role: [:artist, :manager]
 
   validates :password, format: { with: PASSWORD_REGEX }
   validates :role, presence: true
   validates :terms_of_service, acceptance: true
+
+  before_create :set_default_role
+
+  private
 
   def set_default_role
     self.role ||= :artist

@@ -1,5 +1,4 @@
 class Audition < ApplicationRecord
-  before_validation :remove_empty_genre
 
   GENRES = ['Acapella', 'Acid', 'Jazz', 'Acoustic', 'Acid', 'Acid Punk', 'Alternative', 'Hip Hop', 'Ambient',
     'Avantgarde', 'Bass', 'Blues', 'Cabaret', 'Celtic Chamber', 'Chanson', 'Chorus', 'Christian Rap', 'Cinematic', 'Classical',
@@ -13,6 +12,10 @@ class Audition < ApplicationRecord
 
   has_many :links, dependent: :destroy
   accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: :true
+
+  before_validation :remove_empty_genre
+
+  private
 
   def remove_empty_genre
     genres.reject! { |g| g.empty? }
