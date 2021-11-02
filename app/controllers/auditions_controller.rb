@@ -12,9 +12,20 @@ class AuditionsController < ApplicationController
     end
   end
 
+  def update_assigned_to
+    @auditions = Audition.all.order(:id)
+    @audition = Audition.find(params[:audition_id])
+    @audition.assigned_to = params[:assigned_to]
+    respond_to do |format|
+      if @audition.save
+        format.js
+      end
+    end
+  end
+
   private
 
   def audition_params
-    params.require(:audition).permit(:first_name, :last_name, :email, :artist_name, :hear_about, :additional_info, :other_source, links_attributes: [:id, :link, :_destroy], genres: [])
+    params.require(:audition).permit(:first_name, :last_name, :email, :artist_name, :hear_about, :additional_info, :other_source, :assigned_to, links_attributes: [:id, :link, :_destroy], genres: [])
   end
 end
