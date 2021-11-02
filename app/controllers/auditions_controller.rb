@@ -16,11 +16,7 @@ class AuditionsController < ApplicationController
     @auditions = Audition.all.order(:id)
     @audition = Audition.find(params[:audition_id])
     @audition.assigned_to = params[:assigned_to]
-    respond_to do |format|
-      if @audition.save
-        format.js
-      end
-    end
+    @audition.save!
   end
 
   private

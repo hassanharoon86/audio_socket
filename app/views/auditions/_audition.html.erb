@@ -17,7 +17,7 @@
 
   <td><%= audition.created_at.strftime("%d %b %Y %I:%M %p") %></td>
   <% if audition.assigned_to == nil %>
-    <td><%= select_tag :assigned_to, options_for_select(User.where(role: 1).map{ |u| u.email.split('@').first }), class: 'form-control manager-selection', data: { audition_id: audition.id } %></td>
+    <td><%= select_tag :assigned_to, options_for_select(User.where(role: 1).map{ |u| u.email.split('@').first }.unshift("Select manager")), class: 'form-control manager-selection', data: { audition_id: audition.id } %></td>
   <% else %>
     <td><%= audition.assigned_to %></td>
   <% end %>
