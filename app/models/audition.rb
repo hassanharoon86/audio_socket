@@ -17,6 +17,7 @@ class Audition < ApplicationRecord
 
   has_many :links, dependent: :destroy
   accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: :true
+  belongs_to :user, optional: true
 
   before_validation :remove_empty_genre
   before_create :set_default_status
