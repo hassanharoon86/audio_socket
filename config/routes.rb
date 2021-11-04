@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :artists
   resources :managers
   resources :auditions, only: [:new, :create]
+
+  get 'auditions', to: 'auditions#new'
 end

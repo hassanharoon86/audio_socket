@@ -9,6 +9,8 @@ class AuditionsController < ApplicationController
     @audition = Audition.new(audition_params)
     if @audition.save
       redirect_to root_path
+    else
+      render 'new'
     end
   end
 
