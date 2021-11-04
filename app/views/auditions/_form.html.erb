@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <h2>Submit Audition</h2>
+</div>
+<br>
+
+<%= form_with(model: @audition) do |f| %>
+  <%= render 'layouts/shared/flash' %>
+
+  <div class="mb-3">
+    <%= f.text_field :first_name, placeholder: "First Name", class: "form-control", autofocus: true, autocomplete: "first_name", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control", autofocus: true, autocomplete: "last_name", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.email_field :email, placeholder: "Email Address", class: "form-control", autofocus: true, autocomplete: "email", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.text_field :artist_name, placeholder: "Artist Name", class: "form-control", autofocus: true, autocomplete: "artist_name", required: true %>
+  </div>
+
+  <%= f.fields_for :links do |link| %>
+    <%= render 'link_fields', f: link %>
+  <% end %>
+
+  <div class="mb-3 actions d-flex justify-content-end" id="add-link">
+    <%= link_to_add_association 'Add link', f, :links, class: 'btn btn-outline-secondary' %><br>
+  </div>
+
+  <%= f.label :genres, 'Select Genres:' %>
+  <div class="mb-3 actions d-flex">
+    <%= f.select :genres, Audition::GENRES, {}, class: "form-control", autofocus: true, autocomplete: "genres", multiple: true, required: true %>
+  </div>
+
+  <%= f.label :hear_about, 'How did you hear about us?:' %>
+  <div class="mb-3 actions d-flex">
+    <%= f.select :hear_about, Audition::SOURCES, {}, class: "form-control", id: "hear-about", autofocus: true, autocomplete: "hear_about" %>
+  </div>
+
+  <div class="mb-3", id="other-field" style="display: none;">
+    <%= f.text_field :other_source, placeholder: "Other", class: "form-control", autofocus: true, autocomplete: "other_source" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.text_field :additional_info, placeholder: "Any Additional info", class: "form-control", autofocus: true, autocomplete: "additional_info" %>
+  </div>
+
+  <div class="mb-3 actions d-flex justify-content-center">
+    <%= f.submit nil, class: "btn btn-secondary" %>
+  </div>
+<% end %>

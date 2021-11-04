@@ -1,0 +1,22 @@
+<section class="h-100 h-custom" style="background-color: #A9A9A9;">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center">
+      <div class="col-sm-4">
+        <br>
+
+        <div class="card">
+          <div class="card-body p-4 p-md-5">
+            <% if @audition.errors.any? %>
+              <ol>
+                <% @audition.errors.full_messages.each do |msg| %>
+                  <li> <%= msg %> </li>
+                <% end %>
+              </ol>
+            <%end%>
+            <%= render 'form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

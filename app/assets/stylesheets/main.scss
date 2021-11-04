@@ -4,16 +4,20 @@
     height: 100% !important;
   }
 }
+
 body {
   background: #ccc !important;
 }
+
 display-flex, .form-flex{
   display: flex;
   display: -webkit-flex;
 }
+
 .card {
   margin-bottom: 25vh;
 }
+
 .form-radio {
   margin-bottom: 40px;
 }
@@ -55,6 +59,7 @@ display-flex, .form-flex{
   border-color: #C3CAD2 !important;
   z-index: 1;
 }
+
 .style-me {
   margin-left: 10px;
 }
