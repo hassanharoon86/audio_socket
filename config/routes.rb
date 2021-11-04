@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :artists
   resources :managers
   resources :auditions, only: [:new, :create] do
-    match 'auditions', to: 'auditions#new', via: [:get, :post]
+    collection do
+      get '/', to: 'auditions#new'
+    end
   end
-
-  get 'auditions', to: 'auditions#new'
 end
