@@ -2,7 +2,7 @@
   <br>
 
   <div class="col-md-4">
-    <%= form_with(url: managers_path, method: :get) do |f| %>
+    <%= form_with(url: managers_path, method: :get, local: false) do |f| %>
       <%= f.text_field :query, class: 'search-bar', placeholder: 'Search by Name, Artist, Email or Genres' %>
       <%= f.submit "Search", class: 'btn btn-secondary' %>
     <% end %>
