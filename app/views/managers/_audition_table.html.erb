@@ -3,51 +3,51 @@
 
   <th scope="col"><%= link_to 'NAME', sorting_column: 'first_name', sorting_direction: sortable('first_name'), remote: true %>
     <% if params[:sorting_column] == 'first_name' && params[:sorting_direction] == 'ASC' %>
-      <i class="fas fa-sort-down"></i>
+      <i class="fas fa-sort-down sort-color"></i>
     <% elsif params[:sorting_column] == 'first_name' && params[:sorting_direction] == 'DESC' %>
-      <i class="fas fa-sort-up"></i>
+      <i class="fas fa-sort-up sort-color"></i>
     <% else %>
-      <i class="fas fa-sort"></i>
+      <i class="fas fa-sort sort-color"></i>
     <% end %>
   </th>
 
   <th scope="col"><%= link_to 'ARTIST', sorting_column: 'artist_name', sorting_direction: sortable('artist_name'), remote: true %>
     <% if params[:sorting_column] == 'artist_name' && params[:sorting_direction] == 'ASC' %>
-      <i class="fas fa-sort-down"></i>
+      <i class="fas fa-sort-down sort-color"></i>
     <% elsif params[:sorting_column] == 'artist_name' && params[:sorting_direction] == 'DESC' %>
-      <i class="fas fa-sort-up"></i>
+      <i class="fas fa-sort-up sort-color"></i>
     <% else %>
-      <i class="fas fa-sort"></i>
+      <i class="fas fa-sort sort-color"></i>
     <% end %>
   </th>
 
   <th scope="col"><%= link_to 'EMAIL', sorting_column: 'email', sorting_direction: sortable('email'), remote: true %>
     <% if params[:sorting_column] == 'email' && params[:sorting_direction] == 'ASC' %>
-      <i class="fas fa-sort-down"></i>
+      <i class="fas fa-sort-down sort-color"></i>
     <% elsif params[:sorting_column] == 'email' && params[:sorting_direction] == 'DESC' %>
-      <i class="fas fa-sort-up"></i>
+      <i class="fas fa-sort-up sort-color"></i>
     <% else %>
-      <i class="fas fa-sort"></i>
+      <i class="fas fa-sort sort-color"></i>
     <% end %>
   </th>
 
   <th scope="col"><%= link_to 'GENRES', sorting_column: 'genres', sorting_direction: sortable('genres'), remote: true %>
     <% if params[:sorting_column] == 'genres' && params[:sorting_direction] == 'ASC' %>
-      <i class="fas fa-sort-down"></i>
+      <i class="fas fa-sort-down sort-color"></i>
     <% elsif params[:sorting_column] == 'genres' && params[:sorting_direction] == 'DESC' %>
-      <i class="fas fa-sort-up"></i>
+      <i class="fas fa-sort-up sort-color"></i>
     <% else %>
-      <i class="fas fa-sort"></i>
+      <i class="fas fa-sort sort-color"></i>
     <% end %>
   </th>
 
   <th scope="col"><%= link_to 'SUBMITTED', sorting_column: 'created_at', sorting_direction: sortable('created_at'), remote: true %>
     <% if params[:sorting_column] == 'created_at' && params[:sorting_direction] == 'ASC' %>
-      <i class="fas fa-sort-down"></i>
+      <i class="fas fa-sort-down sort-color"></i>
     <% elsif params[:sorting_column] == 'created_at' && params[:sorting_direction] == 'DESC' %>
-      <i class="fas fa-sort-up"></i>
+      <i class="fas fa-sort-up sort-color"></i>
     <% else %>
-      <i class="fas fa-sort"></i>
+      <i class="fas fa-sort sort-color"></i>
     <% end %>
   </th>
 
@@ -55,11 +55,11 @@
 
   <th scope="col"><%= link_to 'STATUS', sorting_column: 'status', sorting_direction: sortable('status'), remote: true %>
     <% if params[:sorting_column] == 'status' && params[:sorting_direction] == 'ASC' %>
-      <i class="fas fa-sort-down"></i>
+      <i class="fas fa-sort-down sort-color"></i>
     <% elsif params[:sorting_column] == 'status' && params[:sorting_direction] == 'DESC' %>
-      <i class="fas fa-sort-up"></i>
+      <i class="fas fa-sort-up sort-color"></i>
     <% else %>
-      <i class="fas fa-sort"></i>
+      <i class="fas fa-sort sort-color"></i>
     <% end %>
   </th>
 </thead>
