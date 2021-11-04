@@ -11,6 +11,8 @@ class Audition < ApplicationRecord
   validates :first_name, :last_name , length: { maximum: 30 },format: { with: /\A[a-zA-Z]+\z/, message: "No special characters allowed" }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, :last_name, :email, :artist_name, :links, :genres, :hear_about, presence: true
+  validates :genres, inclusion: { in: GENRES, message: "Not a valid Ganre" }
+  validates :hear_about, inclusion: { in: SOURCES, message: "Not a valid Source" }
 
   include PgSearch::Model
   pg_search_scope :search, against: [:first_name, :last_name, :artist_name, :email, :genres], using: :tsearch
@@ -29,6 +31,6 @@ class Audition < ApplicationRecord
   end
 
   def set_default_status
-    self.status ||= :Pending
+    self.status ||= :pending
   end
 end

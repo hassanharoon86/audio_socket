@@ -1,7 +1,9 @@
 module SortingHelper
-  def sortable(column, title=nil)
-    title ||=column.titleize
-    order = column == params[:sort] && params[:order] == "asc" ? "desc" : "asc"
-    link_to title, :sort => column, :order => order
+  def sortable(column_name)
+    if params[:sorting_column] == column_name && params[:sorting_direction] == 'ASC'
+      'DESC'
+    else
+      'ASC'
+    end
   end
 end

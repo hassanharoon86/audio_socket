@@ -4,8 +4,8 @@ class ManagersController < ApplicationController
   def index
     if params[:query].present?
       @auditions = Audition.search(params[:query])
-    elsif params[:sort].present?
-      @auditions = Audition.order(params[:sort]+' '+params[:order])
+    elsif params[:sorting_column].present?
+      @auditions = Audition.all.order(params[:sorting_column] + ' ' + params[:sorting_direction])
     else
       @auditions = Audition.all.order(:id)
     end
@@ -15,7 +15,7 @@ class ManagersController < ApplicationController
 
   def manager_only
     if !current_user.manager?
-      redirect_to root_path, notice: "You don't have access to this page"
+      redirect_to root_path
     end
   end
 end

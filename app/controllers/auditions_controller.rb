@@ -9,6 +9,8 @@ class AuditionsController < ApplicationController
     @audition = Audition.new(audition_params)
     if @audition.save
       redirect_to root_path
+    else
+      render 'new'
     end
   end
 
@@ -18,7 +20,6 @@ class AuditionsController < ApplicationController
     @audition.user = User.find_by_email(params[:assigned_to] + '@audiosocket.com')
     byebug
     if @audition.save
-      byebug
       AuditionMailer.audition_assign(@audition.user.email, @audition).deliver_now
     end
   end

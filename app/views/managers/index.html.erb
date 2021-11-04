@@ -10,22 +10,8 @@
 
   <table id="auditions" class="table table-bordered table-striped table-hover table-color">
     <caption>List of Auditions</caption>
-    <thead class="thead-dark">
-      <th scope="col">ID</th>
-      <th scope="col"><%= sortable "first_name", "NAME" %></th>
-      <th scope="col"><%= sortable "artist_name", "ARTIST" %></th>
-      <th scope="col"><%= sortable "email", "EMAIL" %></th>
-      <th scope="col"><%= sortable "genres", "GENRES" %></th>
-      <th scope="col"><%= sortable "created_at", "SUBMITTED" %></th>
-      <!-- <th scope="col">LINKS</th> -->
-      <th scope="col">ASSIGNED TO</th>
-      <th scope="col"><%= sortable "status", "STATUS" %></th>
-      <!-- <th colspan="6"></th> -->
-    </thead>
-
-    <tbody>
-      <%= render @auditions %>
-    </tbody>
+    <%= render partial: 'audition_table' %>
   </table>
-<br>
 
+
+<br>
