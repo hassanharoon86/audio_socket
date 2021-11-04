@@ -22,7 +22,7 @@
   <% if audition.user_id == nil %>
     <td><%= select_tag :assigned_to, options_for_select(User.where(role: 1).map{ |u| u.email.split('@').first }), class: 'form-control manager-selection', data: { audition_id: audition.id }, prompt: 'Select Manager' %></td>
   <% else %>
-    <td><%= User.find(audition.user_id).email.split('@').first %></td>
+    <td><%= audition.user.email.split('@').first %></td>
   <% end %>
 
   <td><%= audition.status.titleize %></td>
