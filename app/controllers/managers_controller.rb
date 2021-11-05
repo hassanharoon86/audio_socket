@@ -5,24 +5,26 @@ class ManagersController < ApplicationController
     @auditions = Audition.all.order(:id)
 
     if params[:query].present?
-      @auditions = Audition.search(params[:query])
+      @auditions = @auditions.search(params[:query])
     end
 
     if params[:sorting_column].present?
-      @auditions = Audition.order(params[:sorting_column] + ' ' + params[:sorting_direction])
+      @auditions = @auditions.reorder(params[:sorting_column] + ' ' + params[:sorting_direction])
+      # byebug
     end
 
     if params[:scope].present?
+      # byebug
       if params[:scope] == 'Pending'
-        @auditions = Audition.pending.order(:id)
+        @auditions = @auditions.pending
       elsif params[:scope] == 'Approved'
-        @auditions = Audition.approved.order(:id)
+        @auditions = @auditions.approved
       elsif params[:scope] == 'Rejected'
-        @auditions = Audition.rejected.order(:id)
+        @auditions = @auditions.rejected
       elsif params[:scope] == 'Deleted'
-        @auditions = Audition.deleted.order(:id)
+        @auditions = @auditions.deleted
       elsif params[:scope] = 'All'
-        @auditions = Audition.all.order(:id)
+        @auditions = @auditions.all
       end
     end
 

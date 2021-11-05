@@ -1,26 +1,3 @@
-<div class="container">
-  <br>
-
-  <div class="col-md-4">
-    <%= form_with(url: managers_path, method: :get, local: false) do |f| %>
-      <%= f.text_field :query, class: 'search-bar', placeholder: 'Search by Name, Artist, Email or Genres' %>
-      <%= f.submit "Search", class: 'btn btn-secondary' %>
-    <% end %>
-  </div>
-  <br>
-
-  <div class="form-control">
-    <%= scopable 'All' %>&nbsp&nbsp
-    <%= scopable 'Pending' %>&nbsp&nbsp
-    <%= scopable 'Approved' %>&nbsp&nbsp
-    <%= scopable 'Rejected' %>&nbsp&nbsp
-    <%= scopable 'Deleted' %>
-  </div>
-  <br>
-
-  <table id="auditions" class="table table-bordered table-striped table-hover table-color">
-    <%= render partial: 'audition_table' %>
-  </table>
-
-
-<br>
+<div class="container container-index">
+  <%= render partial: 'audition_table' %>
+</div>
