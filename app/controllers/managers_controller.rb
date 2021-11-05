@@ -2,12 +2,14 @@ class ManagersController < ApplicationController
   before_action :authenticate_user!, :manager_only
 
   def index
+    @auditions = Audition.all.order(:id)
+
     if params[:query].present?
       @auditions = Audition.search(params[:query])
-    elsif params[:sorting_column].present?
+    end
+
+    if params[:sorting_column].present?
       @auditions = Audition.all.order(params[:sorting_column] + ' ' + params[:sorting_direction])
-    else
-      @auditions = Audition.all.order(:id)
     end
   end
 
