@@ -3,9 +3,11 @@
 </div>
 <br>
 
-<%= form_with model: @audition do |f| %>
+<%= form_with(model: @audition) do |f| %>
+  <%= render 'layouts/shared/flash' %>
+
   <div class="mb-3">
-    <%= f.text_field :first_name, placeholder: "First Name", class: "form-control", autofocus: true, autocomplete: "first_name" %>
+    <%= f.text_field :first_name, placeholder: "First Name", class: "form-control", autofocus: true, autocomplete: "first_name", required: true %>
   </div>
 
   <div class="mb-3">
@@ -28,12 +30,12 @@
     <%= link_to_add_association 'Add link', f, :links, class: 'btn btn-outline-secondary' %><br>
   </div>
 
-  Select Genres:
+  <%= f.label :genres, 'Select Genres:' %>
   <div class="mb-3 actions d-flex">
     <%= f.select :genres, Audition::GENRES, {}, class: "form-control", autofocus: true, autocomplete: "genres", multiple: true, required: true %>
   </div>
 
-  How did you hear about us?
+  <%= f.label :hear_about, 'How did you hear about us?:' %>
   <div class="mb-3 actions d-flex">
     <%= f.select :hear_about, Audition::SOURCES, {}, class: "form-control", id: "hear-about", autofocus: true, autocomplete: "hear_about" %>
   </div>

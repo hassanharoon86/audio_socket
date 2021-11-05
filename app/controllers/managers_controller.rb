@@ -10,11 +10,9 @@ class ManagersController < ApplicationController
 
     if params[:sorting_column].present?
       @auditions = @auditions.reorder(params[:sorting_column] + ' ' + params[:sorting_direction])
-      # byebug
     end
 
     if params[:scope].present?
-      # byebug
       if params[:scope] == 'Pending'
         @auditions = @auditions.pending
       elsif params[:scope] == 'Approved'
