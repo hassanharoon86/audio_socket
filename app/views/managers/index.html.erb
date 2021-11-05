@@ -10,11 +10,11 @@
   <br>
 
   <div class="form-control">
-    <%= link_to 'All', root_path %>(<%= @auditions.count %>)
-    <%= link_to 'Pending', root_path %>(<%= @auditions.where(status: 0).count %>)
-    <%= link_to 'Approved', root_path %>(<%= @auditions.where(status: 1).count %>)
-    <%= link_to 'Rejected', root_path %>(<%= @auditions.where(status: 2).count %>)
-    <%= link_to 'Deleted', root_path %>(<%= @auditions.where(status: 3).count %>)
+    <%= scopable 'All' %>&nbsp&nbsp
+    <%= scopable 'Pending' %>&nbsp&nbsp
+    <%= scopable 'Approved' %>&nbsp&nbsp
+    <%= scopable 'Rejected' %>&nbsp&nbsp
+    <%= scopable 'Deleted' %>
   </div>
   <br>
 
