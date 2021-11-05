@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-
-  resources :artists
-  resources :managers, only: [:index]
-  resources :auditions, only: [:new, :create, :update]
-
   root to: 'home#index'
 
-  get 'update_assigned_to', to: "auditions#update_assigned_to", as: 'update_assigned_to'
+  resources :artists
+  resources :managers
+  resources :auditions, only: [:new, :create] do
+    collection do
+      get '/', to: 'auditions#new'
+    end
+  end
 end
