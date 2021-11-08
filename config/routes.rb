@@ -9,4 +9,6 @@ Rails.application.routes.draw do
       get '/', to: 'auditions#new'
     end
   end
+
+  get '/update_assigned_to', to: "auditions#update_assigned_to"
 end
