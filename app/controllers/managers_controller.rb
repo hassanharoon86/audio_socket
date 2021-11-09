@@ -26,6 +26,17 @@ class ManagersController < ApplicationController
       end
     end
 
+    respond_to do |format|
+      format.html
+      format.js
+
+      if params[:scope].present?
+        format.csv { send_data @auditions.to_csv, filename: "auditions-"  + params[:scope] + "-#{Date.today}.csv" }
+      else
+        format.csv { send_data @auditions.to_csv, filename: "auditions-"  + "#{Date.today}.csv" }
+      end
+    end
+
   end
 
   private
