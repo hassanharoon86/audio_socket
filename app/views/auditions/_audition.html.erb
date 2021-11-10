@@ -19,11 +19,13 @@
 
   <td><%= audition.created_at.strftime("%d %b %Y %I:%M %p") %></td>
 
-  <% if audition.user_id == nil %>
-    <td><%= select_tag :assigned_to, options_for_select(User.where(role: 1).map{ |u| u.email.split('@').first }), class: 'form-control manager-selection', data: { audition_id: audition.id }, prompt: 'Select Manager' %></td>
-  <% else %>
+  <% if audition.user_id %>
     <td><%= audition.user.email.split('@').first %></td>
+  <% else %>
+    <td><%= select_tag :assigned_to, options_for_select(User.where(role: 1).map{ |u| u.email.split('@').first }), class: 'form-control manager-selection', data: { audition_id: audition.id }, prompt: 'Select Manager' %></td>
   <% end %>
 
   <td><%= audition.status.titleize %></td>
+
+  <td><%= link_to 'View', audition_path(audition), class: "btn btn-outline-secondary", id: 'view'+audition.id.to_s, data: { bs_toggle: 'modal', bs_target: '#auditionModal', remote: true } %></td>
 </tr>

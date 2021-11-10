@@ -1,0 +1,128 @@
+<div class="modal-header">
+  <div class="modal-title" id="auditionModalLabel">
+    <b class="font-size"><%= @audition.first_name + ' ' + @audition.last_name %></b>
+    <i class="ps-3"><%= @audition.status %></i>
+  </div>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+  <div class="row mb-3">
+    <div class="col">
+      <b>First Name</b>
+    </div>
+
+    <div class="col">
+      <%= @audition.first_name %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <b>Last Name</b>
+    </div>
+
+    <div class="col">
+      <%= @audition.last_name %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <b>Email</b>
+    </div>
+
+    <div class="col">
+      <%= @audition.email %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <b>Artist Name</b>
+    </div>
+
+    <div class="col">
+      <%= @audition.artist_name %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <b>Track Links</b>
+    </div>
+
+    <div class="col">
+      <%= render @audition.links %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <b>Submitted at</b>
+    </div>
+
+    <div class="col">
+      <%= @audition.created_at.strftime("%d %b %Y %I:%M %p") %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <b>Genres</b>
+    </div>
+
+    <div class="col">
+      <% @audition.genres.each do |genre| %>
+        <% if !(genre.equal?(@audition.genres.last)) %>
+          <% if !(genre.equal?(@audition.genres.last(2).first)) %>
+            <%= genre + "," %>
+          <% else %>
+            <%= genre %>
+          <% end %>
+        <% else %>
+          & <%= genre %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <b>Heard From</b>
+    </div>
+
+    <div class="col">
+      <%= @audition.hear_about %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <b>Additional Info</b>
+    </div>
+
+    <div class="col">
+      <% if @audition.additional_info.blank? %>
+        -
+      <% else %>
+        <%= @audition.additional_info %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if current_user == @audition.user %>
+  <div class="modal-footer">
+    <%= link_to 'Accept', update_status_auditions_path(id: @audition.id, value: Audition::statuses.values_at("accepted")[0]), class: 'btn btn-outline-success', remote: true, data: { bs_dismiss: 'modal' } %>
+    <%= link_to 'Reject', update_status_auditions_path(id: @audition.id, value: Audition::statuses.values_at("rejected")[0]), class: 'btn btn-outline-warning', remote: true, data: { bs_dismiss: 'modal' } %>
+    <%= link_to 'Delete', update_status_auditions_path(id: @audition.id, value: Audition::statuses.values_at("deleted")[0]), class: 'btn btn-outline-danger', remote: true, data: { bs_dismiss: 'modal' } %>
+
+  </div>
+<% else %>
+  <div class="modal-footer">
+    <%= link_to 'Accept', nil, class: 'btn btn-outline-success disabled', data: { bs_dismiss: 'modal' } %>
+    <%= link_to 'Reject', nil, class: 'btn btn-outline-warning disabled', data: { bs_dismiss: 'modal' } %>
+    <%= link_to 'Delete', nil, class: 'btn btn-outline-danger disabled', data: { bs_dismiss: 'modal' } %>
+  </div>
+<% end %>

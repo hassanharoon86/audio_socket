@@ -4,9 +4,12 @@ Rails.application.routes.draw do
 
   resources :artists
   resources :managers
-  resources :auditions, only: [:new, :create] do
+  resources :auditions, only: [:new, :create, :show] do
     collection do
       get '/', to: 'auditions#new'
+      get :update_status, to: 'auditions#update_status'
     end
   end
+
+  get 'update_assigned_to', to: "auditions#update_assigned_to"
 end

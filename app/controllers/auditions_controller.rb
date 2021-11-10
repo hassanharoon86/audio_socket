@@ -13,6 +13,19 @@ class AuditionsController < ApplicationController
     end
   end
 
+  def show
+    @audition = Audition.find(params[:id])
+  end
+
+  def update_status
+    @auditions = Audition.all.order(:id)
+    @audition = Audition.find(params[:id])
+    if(current_user == @audition.user)
+      @audition.status = Audition::statuses.keys[params[:value].to_i]
+      @audition.save
+    end
+  end
+
   def update_assigned_to
     @auditions = Audition.all.order(:id)
     @audition = Audition.find(params[:audition_id])
