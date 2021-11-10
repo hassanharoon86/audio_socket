@@ -6,7 +6,11 @@
     <%= f.submit "Search", class: 'btn btn-secondary' %>
   <% end %>
 
-  <%= link_to 'Export CSV', managers_path(scope: params[:scope], format: :csv), class: 'btn btn-secondary' %>
+  <% if params[:query].present? %>
+    <%= link_to 'Export CSV', nil, class: 'btn btn-secondary disabled' %>
+  <% else %>
+    <%= link_to 'Export CSV', managers_path(scope: params[:scope], format: :csv), class: 'btn btn-secondary' %>
+  <% end %>
 </div>
 <br>
 
