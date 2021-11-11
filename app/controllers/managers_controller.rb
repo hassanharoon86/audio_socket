@@ -11,6 +11,8 @@ class ManagersController < ApplicationController
     if params[:sorting_column].present?
       @auditions = Audition.all.order(params[:sorting_column] + ' ' + params[:sorting_direction])
     end
+
+    byebug
   end
 
   private

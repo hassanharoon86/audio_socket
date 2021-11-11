@@ -28,6 +28,8 @@ gem 'devise'
 gem 'cocoon'
 # For implementing search functionality
 gem 'pg_search'
+# For sending invitations to users
+gem 'devise_invitable'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

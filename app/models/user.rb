@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   PASSWORD_REGEX = /(?=.{8,})(?=.*[A-Z])(?=.*[[:^alnum:]])/
 
@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :terms_of_service, acceptance: true
 
   before_create :set_default_role
+  before_invitation_created :set_default_role
 
   private
 
