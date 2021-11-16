@@ -114,15 +114,15 @@
 
 <% if current_user == @audition.user %>
   <div class="modal-footer">
-    <%= link_to 'Accept', update_status_auditions_path(id: @audition.id, value: Audition::statuses.values_at("accepted")[0]), class: 'btn btn-outline-success', remote: true, data: { bs_dismiss: 'modal' } %>
-    <%= link_to 'Reject', update_status_auditions_path(id: @audition.id, value: Audition::statuses.values_at("rejected")[0]), class: 'btn btn-outline-warning', remote: true, data: { bs_dismiss: 'modal' } %>
-    <%= link_to 'Delete', update_status_auditions_path(id: @audition.id, value: Audition::statuses.values_at("deleted")[0]), class: 'btn btn-outline-danger', remote: true, data: { bs_dismiss: 'modal' } %>
+    <%= link_to 'Accept', show_email_modal_path(id: @audition.id, value: Audition::statuses.values_at("accepted")[0]), class: 'btn btn-outline-success', remote: true, data: { bs_target: '#emailModal', bs_toggle: 'modal' } %>
+    <%= link_to 'Reject', show_email_modal_path(id: @audition.id, value: Audition::statuses.values_at("rejected")[0]), class: 'btn btn-outline-warning', remote: true, data: { bs_target: '#emailModal', bs_toggle: 'modal' } %>
+    <%= link_to 'Delete', update_status_and_send_invite_path(id: @audition.id, value: Audition::statuses.values_at("deleted")[0]), class: 'btn btn-outline-danger', remote: true, data: { bs_dismiss: 'modal' } %>
 
   </div>
 <% else %>
   <div class="modal-footer">
-    <%= link_to 'Accept', nil, class: 'btn btn-outline-success disabled', data: { bs_dismiss: 'modal' } %>
-    <%= link_to 'Reject', nil, class: 'btn btn-outline-warning disabled', data: { bs_dismiss: 'modal' } %>
-    <%= link_to 'Delete', nil, class: 'btn btn-outline-danger disabled', data: { bs_dismiss: 'modal' } %>
+    <%= link_to 'Accept', 'javascipt:void(0)', class: 'btn btn-outline-success disabled', data: { bs_dismiss: 'modal' } %>
+    <%= link_to 'Reject', 'javascipt:void(0)', class: 'btn btn-outline-warning disabled', data: { bs_dismiss: 'modal' } %>
+    <%= link_to 'Delete', 'javascipt:void(0)', class: 'btn btn-outline-danger disabled', data: { bs_dismiss: 'modal' } %>
   </div>
 <% end %>

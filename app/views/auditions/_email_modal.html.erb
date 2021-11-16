@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="emailModalToggleLabel">Send Email</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+  <%= form_tag(update_status_and_send_invite_path) do %>
+    <div class="mb-3">
+      <%= label_tag :email, nil, autocomplete: "email" %>
+    </div>
+
+    <div class="mb-3">
+      <%= email_field_tag :email, audition.email, class: 'form-control', autocomplete: "email", disabled: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= label_tag :content, nil, autocomplete: "content" %>
+    </div>
+
+    <% if params[:value] == "1" %>
+      <div class="mb-3">
+        <%= cktext_area_tag :content, Audition::AUDITION_ACCEPT_EMAIL, class: 'form-control', id: 'email-content', autocomplete: "content" %>
+      </div>
+    <% else %>
+      <div class="mb-3">
+        <%= cktext_area_tag :content, Audition::AUDITION_REJECT_EMAIL, class: 'form-control', id: 'email-content', autocomplete: "content" %>
+      </div>
+    <% end %>
+</div>
+
+<div class="modal-footer">
+    <%= link_to 'Send Email', 'javascipt:void(0)', id: 'send-email-button', class: 'btn btn-primary', data: { bs_dismiss: 'modal', id: audition.id, value: params[:value] } %>
+  <%end%>
+</div>

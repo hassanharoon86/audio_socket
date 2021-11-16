@@ -30,6 +30,8 @@ gem 'cocoon'
 gem 'pg_search'
 # For sending invitations to users
 gem 'devise_invitable'
+# For WYSIWYG editor
+gem 'ckeditor'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
