@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get '/', to: 'auditions#new'
     end
   end
+  resource :artist_details, only: [:new, :create]
 
   get 'update_status_and_send_invite', to: "auditions#update_status_and_send_invite"
   get 'update_assigned_to', to: "auditions#update_assigned_to"

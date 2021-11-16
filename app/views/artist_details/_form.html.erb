@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-center">
+  <h2>Profile Setup</h2>
+</div>
+<br>
+
+<%= form_with(model: @artist_detail) do |f| %>
+  <%= render 'layouts/shared/flash' %>
+
+  <div class="mb-3">
+    <%= f.text_field :artist_name, placeholder: "Artist Name", class: "form-control", autofocus: true, autocomplete: "artist_name", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.email_field :email, placeholder: "Email Address", class: "form-control", autofocus: true, autocomplete: "email", required: true %>
+  </div>
+
+  <!-- Add country selection field -->
+
+  <!-- Add profile image selection -->
+
+  <div class="mb-3">
+    <%= f.text_field :bio, placeholder: "Bio", class: "form-control", autofocus: true, autocomplete: "bio" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.text_field :website_link, placeholder: "Website Link", class: "form-control", autofocus: true, autocomplete: "website_link", required: true %>
+  </div>
+
+  <!-- Add social links using cocoon -->
+
+  <div class="mb-3 actions d-flex justify-content-center">
+    <%= f.submit nil, class: "btn btn-secondary" %>
+  </div>
+<% end %>
