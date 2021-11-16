@@ -7,7 +7,6 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
   validates :password, format: { with: PASSWORD_REGEX }
-  # validates :role, presence: true
   validates :terms_of_service, acceptance: true
 
   before_create :set_default_role

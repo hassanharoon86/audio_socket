@@ -8,8 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_invitable_parameters
-    devise_parameter_sanitizer.permit(:invite, keys: [:email, :content])
-
-    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:role])
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:email])
   end
 end

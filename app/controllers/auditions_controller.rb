@@ -32,7 +32,6 @@ class AuditionsController < ApplicationController
         if params[:value] == "2"
           AuditionMailer.audition_update(@audition, @content).deliver_now
         else
-          # InviteMailer.invitation_instructions(@audition, @content).deliver_now
           User.invite!({email: @audition.email}, nil, {content: @content})
         end
       end
