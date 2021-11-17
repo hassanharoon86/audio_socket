@@ -14,9 +14,8 @@ class AuditionsController < ApplicationController
   end
 
   def update_assigned_to
-    @auditions = Audition.all.order(:id)
     @audition = Audition.find(params[:audition_id])
-    @audition.user = User.find_by_email(params[:assigned_to] + '@audiosocket.com')
+    @audition.user = User.find_by_email(params[:assigned_to])
     if @audition.save
       AuditionMailer.audition_assign(@audition.user.email, @audition).deliver_now
     end
