@@ -4,7 +4,9 @@ class DeviseMailer < Devise::Mailer
   default template_path: 'devise/mailer'
 
   def invitation_instructions(resource, token, options)
+    # byebug
     @content = options[:content]
+    @audition = options[:audition]
 
     super
   end

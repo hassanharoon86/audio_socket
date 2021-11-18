@@ -32,6 +32,8 @@ gem 'pg_search'
 gem 'devise_invitable'
 # For WYSIWYG editor
 gem 'ckeditor'
+# For country select
+gem 'country_select'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -1,0 +1,10 @@
+<%#byebug%>
+<div class="nested-fields">
+  <div class="mb-3 field">
+    <%= f.text_field :link, placeholder: 'Social links', class: 'form-control', required: true %>
+  </div>
+
+  <div class="mb-3 actions d-flex justify-content-center">
+    <%= link_to_remove_association "Delete link", f,  class: 'btn btn-outline-secondary' %>
+  </div>
+</div>

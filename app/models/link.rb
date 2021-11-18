@@ -1,3 +1,3 @@
 class Link < ApplicationRecord
-  belongs_to :audition
+  belongs_to :linkable, polymorphic: true
 end

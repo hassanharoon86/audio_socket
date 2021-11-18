@@ -24,7 +24,7 @@ Have a great day!'.freeze
 
   enum status: [:pending, :accepted, :rejected, :deleted]
 
-  has_many :links, dependent: :destroy
+  has_many :links, as: :linkable, dependent: :destroy
   belongs_to :user, optional: true
 
   accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: :true
@@ -34,7 +34,6 @@ Have a great day!'.freeze
   validates :first_name, :last_name, :email, :artist_name, :links, :genres, :hear_about, presence: true
   validates :genres, inclusion: { in: GENRES, message: "Not a valid Ganre" }
   validates :hear_about, inclusion: { in: SOURCES, message: "Not a valid Source" }
-  validates :first_name, :last_name , length: { maximum: 30 },format: { with: NAME_REGEX, message: "No special characters allowed" }
   validates :email, format: { with: Devise::email_regexp }
   validates :first_name, :last_name, :email, :artist_name, :links, :genres, :hear_about, presence: true
 
