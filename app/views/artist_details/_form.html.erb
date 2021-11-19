@@ -42,9 +42,15 @@
     <%= link_to_add_association 'Add link', f, :links, class: 'btn btn-outline-secondary', force_non_association_create: true %><br>
   </div>
 
-  <div class="mb-3 actions d-flex justify-content-center">
-    <%= link_to 'UPGRADE TO PRO', nil, class: 'btn btn-secondary' %><br>
-  </div>
+  <% if @artist_detail.is_pro == true %>
+    <div class="mb-3 actions d-flex justify-content-center">
+      <%= link_to 'UPGRADE TO PRO', 'javascipt:void(0)', class: 'btn btn-secondary disabled' %><br>
+    </div>
+  <% else %>
+    <div class="mb-3 actions d-flex justify-content-center">
+      <%= f.button 'UPGRADE TO PRO', type: 'submit', class: 'btn btn-secondary', name: "is_pro", value: "true" %><br>
+    </div>
+  <% end %>
 
   <div class="mb-3 actions d-flex justify-content-center">
     <%= f.submit 'SAVE', class: "btn btn-secondary mx-2" %>

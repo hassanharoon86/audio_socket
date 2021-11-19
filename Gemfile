@@ -34,6 +34,10 @@ gem 'devise_invitable'
 gem 'ckeditor'
 # For country select
 gem 'country_select'
+# For stripe payment integration
+gem 'stripe'
+
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

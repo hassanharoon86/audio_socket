@@ -33,6 +33,7 @@ class AuditionsController < ApplicationController
           AuditionMailer.audition_update(@audition, @content).deliver_now
         else
           User.invite!({email: @audition.email}, nil, {content: @content, audition: @audition})
+          # User.invite!({email: @audition.email}, nil, {content: @content})
         end
       end
     end

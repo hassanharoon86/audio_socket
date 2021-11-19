@@ -6,7 +6,7 @@ class DeviseMailer < Devise::Mailer
   def invitation_instructions(resource, token, options)
     # byebug
     @content = options[:content]
-    @audition = options[:audition]
+    # @audition = options[:audition]
 
     super
   end

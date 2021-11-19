@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :artists
   resources :managers
+  resources :charges, only: [:new, :create]
 
   resources :users do
     resource :artist_detail

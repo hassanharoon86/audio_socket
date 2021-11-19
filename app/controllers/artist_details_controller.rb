@@ -3,6 +3,9 @@ class ArtistDetailsController < ApplicationController
     # byebug
     @artist_detail = current_user.artist_detail || current_user.build_artist_detail
     @artist_detail.email = current_user.email
+    if params[:is_pro].present? && params[:is_pro] == 'true'
+      @artist_detail.is_pro = true
+    end
     # byebug
     @artist_detail.artist_name = Audition.find_by_email(current_user.email).artist_name
     @artist_detail.links.build
@@ -10,8 +13,14 @@ class ArtistDetailsController < ApplicationController
 
   def create
     byebug
-    @artist_detail = current_user.create_artist_detail(audition_detail_params)
-    if @artist_detail.save
+    @artist_detail = current_user.build_artist_detail(artist_detail_params)
+    @artist_detail.artist_name = Audition.find_by_email(current_user.email).artist_name
+    if params[:is_pro].present? && params[:is_pro] == 'true'
+      @artist_detail.is_pro = true
+      if @artist_detail.save
+        redirect_to new_charge_path
+      end
+    elsif @artist_detail.save
       redirect_to root_path
     else
       render 'new'
@@ -28,14 +37,14 @@ class ArtistDetailsController < ApplicationController
   #   end
   # end
 
-  def edit
-    @artist_detail = current_user.artist_detail
+  # def edit
+    # @artist_detail = current_user.artist_detail
   #   byebug
-  end
+  # end
 
   private
 
-  def audition_detail_params
+  def artist_detail_params
     # byebug
     params.require(:artist_detail).permit(
       :email,
