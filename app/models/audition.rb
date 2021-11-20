@@ -11,7 +11,7 @@ class Audition < ApplicationRecord
   ].freeze
   SOURCES = ['Facebook', 'Instagram', 'Twitter', 'Other'].freeze
 
-  default_scope { order(:id) }
+  # default_scope { order(:id) }
 
   enum status: [:pending, :accepted, :rejected, :deleted], _default: :pending
 

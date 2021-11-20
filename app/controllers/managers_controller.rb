@@ -3,11 +3,12 @@ class ManagersController < ApplicationController
   before_action :verify_manager_user
 
   def index
+    # byebug
     @auditions = Audition.all
 
-    @auditions = @audition.search(params[:query]) if params[:query].present?
+    @auditions = @auditions.search(params[:query]) if params[:query].present?
 
-    @auditions = @audition.order(params[:sorting_column] => params[:sorting_direction]) if params[:sorting_column].present?
+    @auditions = @auditions.order(params[:sorting_column] + ' ' + params[:sorting_direction]) if params[:sorting_column].present?
   end
 
   private
