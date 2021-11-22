@@ -3,7 +3,6 @@ class ManagersController < ApplicationController
   before_action :verify_manager_user
 
   def index
-    # byebug
     @auditions = Audition.all
 
     @auditions = @auditions.search(params[:query]) if params[:query].present?
