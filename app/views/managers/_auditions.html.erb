@@ -1,0 +1,59 @@
+<br>
+
+<div class="col-md-4">
+  <%= form_with(url: managers_path, method: :get, local: false) do |f| %>
+    <%= f.text_field :query, class: 'search-bar', placeholder: 'Search by Name, Artist, Email or Genres', sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], scope: params[:scope] %>
+    <%= f.submit "Search", class: 'btn btn-secondary' %>
+  <% end %>
+</div>
+<br>
+
+<div class="form-control">
+  <%= link_to "All (#{@auditions.count})", query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Pending (#{@auditions.pending.count})", scope: 'pending', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Accepted (#{@auditions.accepted.count})", scope: 'accepted', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Rejected (#{@auditions.rejected.count})", scope: 'rejected', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Deleted (#{@auditions.deleted.count})", scope: 'deleted', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+</div>
+<br>
+
+<table id="auditions" class="table table-bordered table-striped table-hover table-color">
+  <caption>List of Auditions</caption>
+  <thead class="thead-dark">
+    <th scope="col">ID</th>
+
+    <th scope="col"><%= link_to 'NAME', sorting_column: 'first_name', sorting_direction: sortable('first_name'), scope: params[:scope], query: params[:query], remote: true %>
+        <%= get_sort_icon('first_name') %>
+    </th>
+
+    <th scope="col"><%= link_to 'ARTIST', sorting_column: 'artist_name', sorting_direction: sortable('artist_name'), scope: params[:scope], query: params[:query], remote: true %>
+      <%= get_sort_icon('artist_name') %>
+    </th>
+
+    <th scope="col"><%= link_to 'EMAIL', sorting_column: 'email', sorting_direction: sortable('email'), scope: params[:scope], query: params[:query], remote: true %>
+        <%= get_sort_icon('email') %>
+    </th>
+
+    <th scope="col"><%= link_to 'GENRES', sorting_column: 'genres', sorting_direction: sortable('genres'), scope: params[:scope], query: params[:query], remote: true %>
+        <%= get_sort_icon('genres') %>
+    </th>
+
+    <th scope="col"><%= link_to 'SUBMITTED', sorting_column: 'created_at', sorting_direction: sortable('created_at'), scope: params[:scope], query: params[:query], remote: true %>
+        <%= get_sort_icon('created_at') %>
+    </th>
+
+    <th scope="col">ASSIGNED TO</th>
+
+    <th scope="col"><%= link_to 'STATUS', sorting_column: 'status', sorting_direction: sortable('status'), scope: params[:scope], query: params[:query], remote: true %>
+      <%= get_sort_icon('status') %>
+    </th>
+  </thead>
+
+  <tbody>
+    <%= render @auditions %>
+  </tbody>
+</table>
