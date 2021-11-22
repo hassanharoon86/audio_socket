@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/update_assigned_to', to: "auditions#update_assigned_to"
+  get 'update_assigned_to', to: 'auditions#update_assigned_to'
 end

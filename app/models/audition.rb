@@ -11,7 +11,7 @@ class Audition < ApplicationRecord
   ].freeze
   SOURCES = ['Facebook', 'Instagram', 'Twitter', 'Other'].freeze
 
-  enum status: [:pending, :accepted, :rejected, :deleted]
+  enum status: [:pending, :accepted, :rejected, :deleted], _default: :pending
 
   has_many :links, dependent: :destroy
   belongs_to :user, optional: true
@@ -20,25 +20,24 @@ class Audition < ApplicationRecord
 
   scope :approved, -> { where(status: :accepted) }
 
-  validates :first_name, :last_name , length: { maximum: 30 },format: { with: NAME_REGEX, message: "No special characters allowed" }
+  validates :first_name, :last_name , length: { maximum: 30 }, format: { with: NAME_REGEX, message: "No special characters allowed" }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, :last_name, :email, :artist_name, :links, :genres, :hear_about, presence: true
   validates :genres, inclusion: { in: GENRES, message: "Not a valid Ganre" }
   validates :hear_about, inclusion: { in: SOURCES, message: "Not a valid Source" }
-  validates :first_name, :last_name , length: { maximum: 30 },format: { with: NAME_REGEX, message: "No special characters allowed" }
+  validates :first_name, :last_name , length: { maximum: 30 }, format: { with: NAME_REGEX, message: "No special characters allowed" }
   validates :email, format: { with: Devise::email_regexp }
   validates :first_name, :last_name, :email, :artist_name, :links, :genres, :hear_about, presence: true
 
   before_validation :remove_empty_genre
-  before_create :set_default_status
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   private
 
   def remove_empty_genre
     genres.reject!(&:empty?)
-  end
-
-  def set_default_status
-    self.status ||= :pending
   end
 end

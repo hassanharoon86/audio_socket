@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.first_or_create(email: 'manager@audiosocket.com', password: 'Password123!@#', password_confirmation: 'Password123!@#', role: 1)
+User.first_or_create(email: 'manager@audiosocket.com', password: 'Password123!@#', password_confirmation: 'Password123!@#', role: :manager)
