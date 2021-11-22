@@ -5,11 +5,16 @@ class User < ApplicationRecord
 
   enum role: [:artist, :manager]
 
+  validates :email, uniqueness: true
   validates :password, format: { with: PASSWORD_REGEX }
   validates :role, presence: true
   validates :terms_of_service, acceptance: true
 
   before_create :set_default_role
+
+  def get_username
+    self.email.split('@').first
+  end
 
   private
 

@@ -10,5 +10,7 @@ require("channels")
 require("jquery")
 require("@nathanvda/cocoon")
 require("packs/audition_submission")
+require("packs/manager")
 
 import 'bootstrap'
+import "@fortawesome/fontawesome-free/js/all";

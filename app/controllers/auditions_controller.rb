@@ -1,4 +1,6 @@
 class AuditionsController < ApplicationController
+  before_action :find_audition
+
   def new
     @audition = Audition.new
     @audition.links.build
@@ -13,7 +15,18 @@ class AuditionsController < ApplicationController
     end
   end
 
+  def update_assigned_to
+    @audition.user = User.find_by_email(params[:assigned_to])
+    if @audition.save
+      AuditionMailer.audition_assign(@audition.user.email, @audition).deliver_now
+    end
+  end
+
   private
+
+  def find_audition
+    @audition = Audition.find(params[:audition_id])
+  end
 
   def audition_params
     params.require(:audition).permit(
