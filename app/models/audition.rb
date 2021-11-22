@@ -18,8 +18,6 @@ class Audition < ApplicationRecord
 
   accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: :true
 
-  scope :approved, -> { where(status: :accepted) }
-
   validates :first_name, :last_name , length: { maximum: 30 }, format: { with: NAME_REGEX, message: "No special characters allowed" }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, :last_name, :email, :artist_name, :links, :genres, :hear_about, presence: true

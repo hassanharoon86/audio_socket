@@ -9,11 +9,15 @@
 <br>
 
 <div class="form-control">
-  <%= scopable 'All' %>&nbsp&nbsp
-  <%= scopable 'Pending' %>&nbsp&nbsp
-  <%= scopable 'Approved' %>&nbsp&nbsp
-  <%= scopable 'Rejected' %>&nbsp&nbsp
-  <%= scopable 'Deleted' %>
+  <%= link_to "All (#{get_count(@auditions)})", query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Pending (#{ + get_count(@auditions.pending)})", scope: 'pending', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Accepted (#{get_count(@auditions.accepted)})", scope: 'accepted', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Rejected (#{get_count(@auditions.rejected)})", scope: 'rejected', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Deleted (#{get_count(@auditions.deleted)})", scope: 'deleted', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
 </div>
 <br>
 
