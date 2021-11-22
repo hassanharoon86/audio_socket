@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   get 'update_status_and_send_invite', to: "auditions#update_status_and_send_invite"
   get 'update_assigned_to', to: "auditions#update_assigned_to"
   get 'show_email_modal', to: "auditions#show_email_modal"
