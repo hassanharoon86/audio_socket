@@ -1,7 +1,5 @@
 <%= @content %>
 
-<%#byebug%>
-
 <%= link_to 'Accept', accept_user_invitation_url(invitation_token: @token) %>
 
 <% if @resource.invitation_due_at %>

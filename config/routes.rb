@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :users do
     resource :artist_detail
   end
-  # resolve("Basket") { [:basket] }
   resolve('ArtistDetail') { [:artist_detail] }
 
   resources :auditions, only: [:new, :create, :show] do

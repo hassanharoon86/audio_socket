@@ -6,7 +6,6 @@
 <%= form_with(model: @artist_detail, url: user_artist_detail_path) do |f| %>
   <%= render 'layouts/shared/flash' %>
 
-  <%#byebug%>
   <div class="mb-3">
     <%= f.text_field :artist_name, placeholder: "Artist Name", class: "form-control", autofocus: true, autocomplete: "artist_name", readonly: true, required: true %>
   </div>
@@ -21,6 +20,7 @@
 
   <div class="mb-3">
     <%= f.file_field :image, class: "form-control", autofocus: true, required: true %>
+    <i><%= f.label :image, 'Minimum required size is 353px x 353px' %></i>
   </div>
 
   <div class="mb-3">
@@ -31,10 +31,7 @@
     <%= f.text_field :website_link, placeholder: "Website Link", class: "form-control", autofocus: true, autocomplete: "website_link", required: true %>
   </div>
 
-  <%#byebug%>
-
   <%= f.fields_for :links do |link| %>
-    <%#byebug%>
     <%= render 'link_fields', f: link %>
   <% end %>
 
@@ -53,7 +50,12 @@
   <% end %>
 
   <div class="mb-3 actions d-flex justify-content-center">
-    <%= f.submit 'SAVE', class: "btn btn-secondary mx-2" %>
-    <%= link_to 'CANCEL', nil, class: "btn btn-secondary mx-2" %>
+    <% if params[:is_pro] == 'true' %>
+      <%= f.button 'SAVE', type: 'submit', class: "btn btn-secondary mx-2", name: "is_pro", value: "done" %>
+
+    <% else %>
+      <%= f.submit 'SAVE', class: "btn btn-secondary mx-2" %>
+    <% end %>
+    <%= link_to 'CANCEL', root_path, class: "btn btn-secondary mx-2" %>
   </div>
 <% end %>

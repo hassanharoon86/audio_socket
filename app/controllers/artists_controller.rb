@@ -5,7 +5,6 @@ class ArtistsController < ApplicationController
   end
 
   def new
-    # @audition = Audition.find()
   end
 
   private

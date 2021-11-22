@@ -36,6 +36,9 @@ gem 'ckeditor'
 gem 'country_select'
 # For stripe payment integration
 gem 'stripe'
+# For ActiveStorage Validations
+gem 'active_storage_validations'
+gem 'mini_magick'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
