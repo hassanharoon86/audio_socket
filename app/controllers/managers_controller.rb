@@ -7,20 +7,13 @@ class ManagersController < ApplicationController
 
     @auditions = @auditions.search(params[:query]) if params[:query].present?
 
-    @auditions = @auditions.order(params[:sorting_column] + ' ' + params[:sorting_direction]) if params[:sorting_column].present?
+    @auditions = @auditions.order(params[:sorting_column] => params[:sorting_direction]) if params[:sorting_column].present?
 
-    if params[:scope].present?
-      if params[:scope] == 'Pending'
-        @auditions = @auditions.pending
-      elsif params[:scope] == 'Approved'
-        @auditions = @auditions.approved
-      elsif params[:scope] == 'Rejected'
-        @auditions = @auditions.rejected
-      elsif params[:scope] == 'Deleted'
-        @auditions = @auditions.deleted
-      elsif params[:scope] = 'All'
-        @auditions = @auditions.all
-      end
+    if params[:scope].in?Audition.statuses
+      @auditions = @auditions.pending if params[:scope] == 'pending'
+      @auditions = @auditions.approved if params[:scope] == 'approved'
+      @auditions = @auditions.rejected if params[:scope] == 'rejected'
+      @auditions = @auditions.deleted if params[:scope] == 'deleted'
     end
 
     respond_to do |format|

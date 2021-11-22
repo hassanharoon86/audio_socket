@@ -15,11 +15,15 @@
 <br>
 
 <div class="form-control">
-  <%= scopable 'All' %>&nbsp&nbsp
-  <%= scopable 'Pending' %>&nbsp&nbsp
-  <%= scopable 'Approved' %>&nbsp&nbsp
-  <%= scopable 'Rejected' %>&nbsp&nbsp
-  <%= scopable 'Deleted' %>
+  <%= link_to "All (#{@auditions.count})", query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Pending (#{@auditions.pending.count})", scope: 'pending', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Accepted (#{@auditions.accepted.count})", scope: 'accepted', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Rejected (#{@auditions.rejected.count})", scope: 'rejected', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
+
+  <%= link_to "Deleted (#{@auditions.deleted.count})", scope: 'deleted', query: params[:query], sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], remote: true %>
 </div>
 <br>
 
