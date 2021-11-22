@@ -7,7 +7,7 @@ class ManagersController < ApplicationController
 
     @auditions = @auditions.search(params[:query]) if params[:query].present?
 
-    @auditions = @auditions.order(params[:sorting_column] + ' ' + params[:sorting_direction]) if params[:sorting_column].present?
+    @auditions = @auditions.order(params[:sorting_column] => params[:sorting_direction]) if params[:sorting_column].present?
 
     if params[:scope].present?
       if params[:scope] == 'Pending'
