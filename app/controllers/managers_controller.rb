@@ -19,12 +19,18 @@ class ManagersController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.csv { send_data @auditions.to_csv,
-                  filename: "auditions-#{params[:scope]}-#{params[:query]}-#{Date.today}.csv"}
+      format.csv { send_data @auditions.to_csv, filename: csv_filename }
     end
   end
 
   private
+
+  def csv_filename
+    file_name = "auditions"
+    file_name += "-#{params[:scope]}" if params[:scope].present?
+    file_name += "-#{params[:query]}" if params[:query].present?
+    file_name += "-#{Date.today}.csv"
+  end
 
   def verify_manager_user
     redirect_to root_path if !current_user.manager?
