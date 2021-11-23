@@ -1,0 +1,20 @@
+<div class="container">
+  <br>
+
+  <div class="d-flex justify-content-between">
+    <h3>Albums</h3>
+
+    <%= link_to 'CREATE ALBUM', new_user_album_path, data: {bs_toggle: 'modal', bs_target: '#createAlbum', remote: true}, class:"btn btn-secondary" %>
+  </div>
+  <br>
+
+  <%= render partial: 'albums' %>
+</div>
+
+<div class="modal fade" id="createAlbum" tabindex="-1" aria-labelledby="AlbumModalLabel" aria-hidden="true">
+  <div class="modal-dialog border border-secondary">
+    <div class="modal-content">
+      <div id="album-content"></div>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :artist_detail
+
+    resources :albums
   end
   resolve('ArtistDetail') { [:artist_detail] }
 
