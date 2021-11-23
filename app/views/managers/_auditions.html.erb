@@ -1,10 +1,12 @@
 <br>
 
-<div class="col-md-4">
+<div class="d-flex justify-content-between">
   <%= form_with(url: managers_path, method: :get, local: false) do |f| %>
     <%= f.text_field :query, class: 'search-bar', placeholder: 'Search by Name, Artist, Email or Genres', sorting_column: params[:sorting_column], sorting_direction: params[:sorting_direction], scope: params[:scope] %>
     <%= f.submit "Search", class: 'btn btn-secondary' %>
   <% end %>
+
+  <%= link_to 'Export CSV', managers_path(scope: params[:scope], query: params[:query], format: :csv), class: 'btn btn-secondary' %>
 </div>
 <br>
 
