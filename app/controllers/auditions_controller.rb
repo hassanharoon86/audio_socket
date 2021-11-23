@@ -2,7 +2,6 @@ class AuditionsController < ApplicationController
   before_action :find_audition, except: [:new, :create]
 
   def new
-    byebug
     @audition = Audition.new
     @audition.links.build
   end
