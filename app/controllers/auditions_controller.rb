@@ -1,5 +1,8 @@
 class AuditionsController < ApplicationController
+  before_action :find_audition, except: [:new, :create]
+
   def new
+    byebug
     @audition = Audition.new
     @audition.links.build
   end
@@ -13,13 +16,10 @@ class AuditionsController < ApplicationController
     end
   end
 
-  def show
-    @audition = Audition.find(params[:id])
-  end
+  def show; end
 
   def update_status
     @auditions = Audition.all.order(:id)
-    @audition = Audition.find(params[:id])
     if(current_user == @audition.user)
       @audition.status = Audition::statuses.keys[params[:value].to_i]
       @audition.save
@@ -27,15 +27,17 @@ class AuditionsController < ApplicationController
   end
 
   def update_assigned_to
-    @auditions = Audition.all.order(:id)
-    @audition = Audition.find(params[:audition_id])
-    @audition.user = User.find_by_email(params[:assigned_to] + '@audiosocket.com')
+    @audition.user = User.find_by_email(params[:assigned_to])
     if @audition.save
       AuditionMailer.audition_assign(@audition.user.email, @audition).deliver_now
     end
   end
 
   private
+
+  def find_audition
+    @audition = Audition.find(params[:audition_id])
+  end
 
   def audition_params
     params.require(:audition).permit(
