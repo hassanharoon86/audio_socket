@@ -19,5 +19,5 @@
 
   <td><%= audition.status.titleize %></td>
 
-  <td><%= link_to 'View', audition_path(audition), class: "btn btn-outline-secondary", id: 'view'+audition.id.to_s, data: { bs_toggle: 'modal', bs_target: '#auditionModal', remote: true } %></td>
+  <td><%= link_to 'View', audition_path(audition), class: "btn btn-outline-secondary", data: { bs_toggle: 'modal', bs_target: '#auditionModal', remote: true } %></td>
 </tr>

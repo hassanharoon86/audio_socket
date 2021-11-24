@@ -18,8 +18,7 @@ class AuditionsController < ApplicationController
   def show; end
 
   def update_status
-    @auditions = Audition.all.order(:id)
-    if(current_user == @audition.user)
+    if current_user == @audition.user
       @audition.status = Audition::statuses.keys[params[:value].to_i]
       @audition.save
     end
@@ -35,7 +34,11 @@ class AuditionsController < ApplicationController
   private
 
   def find_audition
-    @audition = Audition.find(params[:audition_id])
+    if params[:audition_id].present?
+      @audition = Audition.find(params[:audition_id])
+    else
+      @audition = Audition.find(params[:id])
+    end
   end
 
   def audition_params
