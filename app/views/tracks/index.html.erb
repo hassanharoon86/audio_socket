@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="mt-4 mb-5">
+    <h3>Artwork</h3>
+    <%= image_tag @album.artwork, class: 'artwork-size' %>
+  </div>
+
+  <hr>
+
+  <div class="d-flex justify-content-between mt-5">
+    <h3>Albums/<%= @album.title %></h3>
+
+    <%= link_to 'ADD TRACK', new_user_album_track_path(album_id: @album.id), data: {bs_toggle: 'modal', bs_target: '#createTrack', remote: true}, class:"btn btn-secondary" %>
+  </div>
+  <br>
+
+  <%= render partial: 'tracks' %>
+</div>
+
+<div class="modal fade" id="createTrack" tabindex="-1" aria-labelledby="TrackModalLabel" aria-hidden="true">
+  <div class="modal-dialog border border-secondary">
+    <div class="modal-content">
+      <div id="track-content"></div>
+    </div>
+  </div>
+</div>

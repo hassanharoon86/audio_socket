@@ -1,8 +1,10 @@
-<tr id="tr<%= album.id %>">
-  <td><%= album.title %></td>
-    <td class="w-100 d-flex justify-content-end">
-      <%= link_to 'Edit', edit_user_album_path(user_id: params[:user_id], id: album.id), class: "btn btn-outline-primary edit", remote: true %>
+<tr>
+  <td class="w-100">
+    <%= link_to album.title, user_album_tracks_path(current_user, album) %>
+  </td>
+  <td class="d-flex justify-content-end">
+    <%= link_to 'Edit', edit_user_album_path(current_user, album), class: "btn btn-outline-primary edit", remote: true %>
 
-      <%= link_to 'Destroy', user_album_path(user_id: params[:user_id], id: album.id), method: :delete, class: "btn btn-outline-danger mx-1 delete", remote: true %>
-    </td>
+    <%= link_to 'Destroy', user_album_path(user_id: params[:user_id], id: album.id), method: :delete, class: "btn btn-outline-danger mx-1 delete", remote: true %>
+  </td>
 </tr>

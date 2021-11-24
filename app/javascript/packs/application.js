@@ -11,6 +11,7 @@ require("@nathanvda/cocoon")
 require("packs/audition_submission")
 require("packs/manager")
 require("packs/audition")
+require("packs/album")
 
 import 'bootstrap'
 import "@fortawesome/fontawesome-free/js/all";

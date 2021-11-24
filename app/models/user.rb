@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :auditions, dependent: :nullify
   has_one :artist_detail, dependent: :destroy
   has_many :albums, dependent: :destroy
+  has_many :tracks, through: :albums
 
   validates :email, uniqueness: true
   validates :password, format: { with: PASSWORD_REGEX }
