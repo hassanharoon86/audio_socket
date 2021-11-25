@@ -19,7 +19,7 @@ class ManagersController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.csv { send_data @auditions.to_csv, filename: csv_filename }
+      format.csv { send_data CsvGeneratorService.new(@auditions).call, filename: csv_filename }
     end
   end
 
