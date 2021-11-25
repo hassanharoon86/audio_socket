@@ -53,7 +53,7 @@
     </div>
 
     <div class="col">
-      <%= render @audition.links %>
+      <%#= render @audition.links %>
     </div>
   </div>
 
@@ -73,17 +73,7 @@
     </div>
 
     <div class="col">
-      <% @audition.genres.each do |genre| %>
-        <% if !(genre.equal?(@audition.genres.last)) %>
-          <% if !(genre.equal?(@audition.genres.last(2).first)) %>
-            <%= genre + "," %>
-          <% else %>
-            <%= genre %>
-          <% end %>
-        <% else %>
-          & <%= genre %>
-        <% end %>
-      <% end %>
+      <%= @audition.genres.join(', ') %>
     </div>
   </div>
 
@@ -112,17 +102,15 @@
   </div>
 </div>
 
-<% if current_user == @audition.user %>
-  <div class="modal-footer">
-    <%= link_to 'Accept', show_email_modal_path(id: @audition.id, value: Audition::statuses.values_at("accepted")[0]), class: 'btn btn-outline-success', remote: true, data: { bs_target: '#emailModal', bs_toggle: 'modal' } %>
-    <%= link_to 'Reject', show_email_modal_path(id: @audition.id, value: Audition::statuses.values_at("rejected")[0]), class: 'btn btn-outline-warning', remote: true, data: { bs_target: '#emailModal', bs_toggle: 'modal' } %>
-    <%= link_to 'Delete', update_status_and_send_invite_path(id: @audition.id, value: Audition::statuses.values_at("deleted")[0]), class: 'btn btn-outline-danger', remote: true, data: { bs_dismiss: 'modal' } %>
+<div class="modal-footer">
+  <% if current_user == @audition.user %>
+    <%= link_to 'Accept', show_email_modal_path(id: @audition.id, value: status_value('accepted')), class: 'btn btn-outline-success', remote: true %>
+    <%= link_to 'Reject', show_email_modal_path(id: @audition.id, value: status_value('rejected')), class: 'btn btn-outline-warning', remote: true %>
+    <%= link_to 'Delete', update_status_and_send_invite_path(id: @audition.id, value: status_value('deleted')), class: 'btn btn-outline-danger', remote: true %>
+  <% else %>
+    <%= link_to 'Accept', nil, class: 'btn btn-outline-success disabled' %>
+    <%= link_to 'Reject', nil, class: 'btn btn-outline-warning disabled' %>
+    <%= link_to 'Delete', nil, class: 'btn btn-outline-danger disabled' %>
+  <% end %>
+</div>
 
-  </div>
-<% else %>
-  <div class="modal-footer">
-    <%= link_to 'Accept', 'javascipt:void(0)', class: 'btn btn-outline-success disabled', data: { bs_dismiss: 'modal' } %>
-    <%= link_to 'Reject', 'javascipt:void(0)', class: 'btn btn-outline-warning disabled', data: { bs_dismiss: 'modal' } %>
-    <%= link_to 'Delete', 'javascipt:void(0)', class: 'btn btn-outline-danger disabled', data: { bs_dismiss: 'modal' } %>
-  </div>
-<% end %>

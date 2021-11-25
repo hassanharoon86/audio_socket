@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 2021_11_19_095728) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "albums", "users"
   add_foreign_key "artist_details", "users"
   add_foreign_key "auditions", "users"
 end

@@ -14,6 +14,10 @@ class User < ApplicationRecord
 
   before_create :set_default_role
 
+  def get_username
+    self.email.split('@').first
+  end
+
   private
 
   def set_default_role
