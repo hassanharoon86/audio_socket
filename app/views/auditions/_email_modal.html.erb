@@ -19,11 +19,11 @@
 
     <% if params[:value] == "1" %>
       <div class="mb-3">
-        <%= cktext_area_tag :content, Audition::AUDITION_ACCEPT_EMAIL, class: 'form-control', id: 'email-content', autocomplete: "content" %>
+        <%= cktext_area_tag :content, t(".accept_content"), class: 'form-control', id: 'email-content', autocomplete: "content" %>
       </div>
     <% else %>
       <div class="mb-3">
-        <%= cktext_area_tag :content, Audition::AUDITION_REJECT_EMAIL, class: 'form-control', id: 'email-content', autocomplete: "content" %>
+        <%= cktext_area_tag :content, t(".reject_content"), class: 'form-control', id: 'email-content', autocomplete: "content" %>
       </div>
     <% end %>
 </div>
