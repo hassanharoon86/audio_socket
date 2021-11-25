@@ -17,10 +17,22 @@ class AuditionsController < ApplicationController
 
   def show; end
 
-  def update_status
+  def show_email_modal; end
+
+  def update_status_and_send_invite
+    @auditions = Audition.all.order(:id)
+    @audition = Audition.find(params[:id])
+    @content = params[:content]
+
     if current_user == @audition.user
-      @audition.status = Audition.statuses.keys[params[:value].to_sym]
-      @audition.save
+      @audition.status = Audition.statuses[params[:value].to_sym] if params[:value]&.in? Audition.statuses.keys
+      if @audition.save
+        if @audition.rejected?
+          AuditionMailer.audition_update(@audition, @content).deliver_now
+        elsif @audition.accepted?
+          User.invite!({email: @audition.email}, nil, {content: @content})
+        end
+      end
     end
   end
 

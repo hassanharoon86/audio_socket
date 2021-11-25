@@ -49,8 +49,6 @@
     <th scope="col"><%= link_to 'STATUS', sorting_column: 'status', sorting_direction: sortable('status'), scope: params[:scope], query: params[:query], remote: true %>
       <%= get_sort_icon('status') %>
     </th>
-
-    <th>ACTIONS</th>
   </thead>
 
   <tbody>
@@ -63,5 +61,14 @@
     <div class="modal-content">
       <div id="show-audition"></div>
       </div>
+  </div>
+</div>
+
+<div class="modal fade" id="emailModal" aria-hidden="true" aria-labelledby="emailModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div id="show-email-modal"></div>
+      </div>
+    </div>
   </div>
 </div>

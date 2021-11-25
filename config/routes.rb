@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
   root to: 'home#index'
 
@@ -8,11 +9,9 @@ Rails.application.routes.draw do
     collection do
       get '/', to: 'auditions#new'
     end
-
-    member do
-      get :update_status, to: 'auditions#update_status'
-      get :update_assigned_to, to: 'auditions#update_assigned_to'
-    end
   end
 
+  get 'update_status_and_send_invite', to: "auditions#update_status_and_send_invite"
+  get 'update_assigned_to', to: "auditions#update_assigned_to"
+  get 'show_email_modal', to: "auditions#show_email_modal"
 end

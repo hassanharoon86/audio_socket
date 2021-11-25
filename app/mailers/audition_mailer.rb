@@ -7,4 +7,11 @@ class AuditionMailer < ApplicationMailer
 
     mail to: email, subject: 'Audtion assigned to you - Take a look'
   end
+
+  def audition_update(audition, content)
+    @audition = audition
+    @content = content
+
+    mail to: @audition.email, subject: 'Your audition update at audiosocket.com'
+  end
 end
