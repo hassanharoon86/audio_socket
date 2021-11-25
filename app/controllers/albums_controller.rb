@@ -14,18 +14,24 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    @album = current_user.albums.find(params[:id])
+    if @album.tracks.exists?(is_submitted: true)
+      @album = current_user.albums.find(params[:id])
+    end
   end
 
   def update
-    @album = current_user.albums.find(params[:id])
-    @album.update(album_params)
-    @albums = current_user.albums
+    if @album.tracks.exists?(is_submitted: true)
+      @album = current_user.albums.find(params[:id])
+      @album.update(album_params)
+      @albums = current_user.albums
+    end
   end
 
   def destroy
-    @album = current_user.albums.find(params[:id])
-    @album.destroy
+    if @album.tracks.exists?(is_submitted: true)
+      @album = current_user.albums.find(params[:id])
+      @album.destroy
+    end
   end
 
   private

@@ -6,8 +6,6 @@ class HomeController < ApplicationController
       else current_user.artist?
         redirect_to artists_path
       end
-    else
-      redirect_to root_path
     end
   end
 end
