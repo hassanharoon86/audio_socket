@@ -35,6 +35,18 @@ class Audition < ApplicationRecord
 
   private
 
+  def self.to_csv
+    attributes = %w{id first_name last_name artist_name email genres created_at assigned_to status}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |audition|
+        csv << audition.attributes.values_at(*attributes)
+      end
+    end
+  end
+
   def remove_empty_genre
     genres.reject!(&:empty?)
   end
