@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_052802) do
+ActiveRecord::Schema.define(version: 2021_11_16_115847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,16 @@ ActiveRecord::Schema.define(version: 2021_11_12_052802) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "artists", force: :cascade do |t|
+  create_table "artist_details", force: :cascade do |t|
+    t.string "artist_name"
+    t.string "email"
+    t.string "country"
+    t.text "bio"
+    t.string "website_link"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_artist_details_on_user_id"
   end
 
   create_table "auditions", force: :cascade do |t|
@@ -83,11 +90,6 @@ ActiveRecord::Schema.define(version: 2021_11_12_052802) do
     t.index ["audition_id"], name: "index_links_on_audition_id"
   end
 
-  create_table "managers", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -123,6 +125,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_052802) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "artist_details", "users"
   add_foreign_key "auditions", "users"
   add_foreign_key "links", "auditions"
 end
