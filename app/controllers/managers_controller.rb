@@ -11,7 +11,7 @@ class ManagersController < ApplicationController
 
     if params[:scope].in? Audition.statuses
       @auditions = @auditions.pending if params[:scope] == 'pending'
-      @auditions = @auditions.approved if params[:scope] == 'approved'
+      @auditions = @auditions.accepted if params[:scope] == 'accepted'
       @auditions = @auditions.rejected if params[:scope] == 'rejected'
       @auditions = @auditions.deleted if params[:scope] == 'deleted'
     end
