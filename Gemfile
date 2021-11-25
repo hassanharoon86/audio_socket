@@ -39,6 +39,7 @@ gem 'stripe'
 # For ActiveStorage Validations
 gem 'active_storage_validations'
 gem 'mini_magick'
+gem "image_processing"
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
