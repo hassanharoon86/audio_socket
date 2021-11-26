@@ -9,7 +9,6 @@ class TracksController < ApplicationController
   end
 
   def create
-    # byebug
     @album = Album.find(params[:album_id])
     @track = @album.tracks.build(track_params)
     @track.is_submitted = params[:is_submitted]
@@ -19,7 +18,6 @@ class TracksController < ApplicationController
   end
 
   def edit
-    # byebug
     @album = Album.find(params[:album_id])
     @track = Track.find(params[:id])
     if !@track.is_submitted == true
@@ -30,13 +28,11 @@ class TracksController < ApplicationController
   end
 
   def update
-    # byebug
     @album = Album.find(params[:album_id])
     @track = Track.find(params[:id])
     if !@track.is_submitted == true
       @track.is_submitted = params[:is_submitted]
       if !@track.update(track_params)
-        # byebug
         render 'edit'
       end
     end
@@ -44,7 +40,6 @@ class TracksController < ApplicationController
   end
 
   def destroy
-    # byebug
     @track = Track.find(params[:id])
     @track.destroy
   end
