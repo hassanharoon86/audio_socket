@@ -1,11 +1,9 @@
 class ArtistsController < ApplicationController
   before_action :setup_profile
 
-  def index
-  end
+  def index; end
 
-  def new
-  end
+  def new; end
 
   private
 
