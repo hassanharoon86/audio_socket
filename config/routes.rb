@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :artist_detail
+
+    resources :albums
   end
   resolve('ArtistDetail') { [:artist_detail] }
 
@@ -17,7 +19,6 @@ Rails.application.routes.draw do
       get '/', to: 'auditions#new'
     end
   end
-
 
   get 'update_status_and_send_invite', to: "auditions#update_status_and_send_invite"
   get 'update_assigned_to', to: "auditions#update_assigned_to"

@@ -3,8 +3,6 @@ class ArtistsController < ApplicationController
 
   def index; end
 
-  def new; end
-
   private
 
   def setup_profile

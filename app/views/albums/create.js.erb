@@ -1,0 +1,6 @@
+<% if @album.errors.any? %>
+  $('#album-content').html("<%= j render 'form' %>");
+<% else %>
+  $('#createAlbum').modal('hide');
+  $('<%= j render @album %>').appendTo('table#albums tbody');
+<% end %>

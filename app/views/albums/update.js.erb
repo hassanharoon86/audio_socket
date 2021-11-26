@@ -1,0 +1,6 @@
+<% if @album.errors.any? %>
+  $('#album-content').html("<%= j render 'edit' %>");
+<% else %>
+  $('#createAlbum').modal('hide');
+  $('#albums').html("<%= j render partial: 'albums' %>");
+<% end %>

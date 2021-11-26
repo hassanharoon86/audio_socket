@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="AlbumModalLabel">Edit Album</h5>
+</div>
+
+<%= form_for @album, url: user_album_path(user_id: params[:user_id], id: params[:id]), remote: true do |f| %>
+  <%= render 'layouts/shared/flash' %>
+
+  <div class="modal-body mb-5">
+    <div class="mb-3">
+      <%= f.label :title, 'Album Name', autocomplete: "title" %>
+      <%= f.text_field :title, class: 'form-control', autocomplete: "title", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :artwork, 'Select Artwork', autocomplete: "artwork" %>
+      <%= f.file_field :artwork, class: "form-control", autofocus: true %>
+      <i><%= f.label :artwork, '*Minimum required size is 353px x 353px' %></i>
+    </div>
+  </div>
+
+  <div class="modal-footer d-flex justify-content-center">
+    <%= f.submit 'UPDATE', class: 'btn btn-secondary' %>
+    <%= link_to 'CANCEL', nil, class: 'btn btn-light ml-2', data: { bs_dismiss: 'modal'} %>
+  </div>
+<% end %>
