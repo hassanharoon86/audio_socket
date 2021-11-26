@@ -1,1 +1,3 @@
-$('#show-email-modal').html("<%= j render 'email_modal', audition: @audition, remote: true %>").show();
+$('#auditionModal').modal('hide');
+$('#show-email-modal').html("<%= j render 'email_modal', audition: @audition, remote: true %>");
+$('#emailModal').modal('show');

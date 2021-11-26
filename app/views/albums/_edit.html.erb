@@ -4,6 +4,8 @@
 </div>
 
 <%= form_for @album, url: user_album_path(user_id: params[:user_id], id: params[:id]), remote: true do |f| %>
+  <%= render 'layouts/shared/flash' %>
+
   <div class="modal-body mb-5">
     <div class="mb-3">
       <%= f.label :title, 'Album Name', autocomplete: "title" %>

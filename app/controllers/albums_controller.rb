@@ -1,7 +1,8 @@
 class AlbumsController < ApplicationController
   before_action :authenticate_user!
   before_action :verify_artist_user
-  before_action :find_album, except: [:new, :create, :index]
+
+  before_action :find_album, except: [:index, :new, :create]
 
   def index; end
 
@@ -27,10 +28,7 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = current_user.albums.find(params[:id])
-    byebug
     if !@album.tracks.exists?(is_submitted: true)
-      byebug
       @album.destroy
     end
   end
@@ -46,8 +44,6 @@ class AlbumsController < ApplicationController
   end
 
   def verify_artist_user
-    if !current_user.artist?
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user.artist?
   end
 end
