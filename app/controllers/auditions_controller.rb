@@ -25,7 +25,7 @@ class AuditionsController < ApplicationController
     @content = params[:content]
 
     if current_user == @audition.user
-      @audition.status = Audition.statuses[params[:value].to_sym] if params[:value]&.in? Audition.statuses.keys
+      @audition.status = Audition.statuses.keys[params[:value].to_i] if params[:value].present?
       if @audition.save
         if @audition.rejected?
           AuditionMailer.audition_update(@audition, @content).deliver_now
