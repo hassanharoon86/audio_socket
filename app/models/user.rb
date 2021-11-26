@@ -5,6 +5,9 @@ class User < ApplicationRecord
 
   enum role: [:artist, :manager]
 
+  has_many :auditions, dependent: :nullify
+  has_one :artist_detail, dependent: :destroy
+
   validates :email, uniqueness: true
   validates :password, format: { with: PASSWORD_REGEX }
   validates :terms_of_service, acceptance: true

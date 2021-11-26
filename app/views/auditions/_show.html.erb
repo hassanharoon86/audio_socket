@@ -53,7 +53,7 @@
     </div>
 
     <div class="col">
-      <%#= render @audition.links %>
+      <%= render @audition.links %>
     </div>
   </div>
 
@@ -104,7 +104,7 @@
 
 <div class="modal-footer">
   <% if current_user == @audition.user %>
-    <%= link_to 'Accept', show_email_modal_path(id: @audition.id, value: status_value('accepted')), class: 'btn btn-outline-success', remote: true %>
+    <%= link_to 'Accept', show_email_modal_path(id: @audition.id, value: status_value('accepted')), class: 'btn btn-outline-success', data: {bs_target: '#emailModal'}, remote: true %>
     <%= link_to 'Reject', show_email_modal_path(id: @audition.id, value: status_value('rejected')), class: 'btn btn-outline-warning', remote: true %>
     <%= link_to 'Delete', update_status_and_send_invite_path(id: @audition.id, value: status_value('deleted')), class: 'btn btn-outline-danger', remote: true %>
   <% else %>

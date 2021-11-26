@@ -1,0 +1,34 @@
+<caption>List of Auditions</caption>
+  <thead class="thead-dark">
+    <th scope="col">ID</th>
+
+    <th scope="col"><%= link_to 'NAME', sorting_column: 'first_name', sorting_direction: sortable('first_name'), scope: params[:scope], query: params[:query], remote: true %>
+        <%= get_sort_icon('first_name') %>
+    </th>
+
+    <th scope="col"><%= link_to 'ARTIST', sorting_column: 'artist_name', sorting_direction: sortable('artist_name'), scope: params[:scope], query: params[:query], remote: true %>
+      <%= get_sort_icon('artist_name') %>
+    </th>
+
+    <th scope="col"><%= link_to 'EMAIL', sorting_column: 'email', sorting_direction: sortable('email'), scope: params[:scope], query: params[:query], remote: true %>
+        <%= get_sort_icon('email') %>
+    </th>
+
+    <th scope="col"><%= link_to 'GENRES', sorting_column: 'genres', sorting_direction: sortable('genres'), scope: params[:scope], query: params[:query], remote: true %>
+        <%= get_sort_icon('genres') %>
+    </th>
+
+    <th scope="col"><%= link_to 'SUBMITTED', sorting_column: 'created_at', sorting_direction: sortable('created_at'), scope: params[:scope], query: params[:query], remote: true %>
+        <%= get_sort_icon('created_at') %>
+    </th>
+
+    <th scope="col">ASSIGNED TO</th>
+
+    <th scope="col"><%= link_to 'STATUS', sorting_column: 'status', sorting_direction: sortable('status'), scope: params[:scope], query: params[:query], remote: true %>
+      <%= get_sort_icon('status') %>
+    </th>
+  </thead>
+
+  <tbody>
+    <%= render @auditions %>
+  </tbody>

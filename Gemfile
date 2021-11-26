@@ -32,6 +32,15 @@ gem 'pg_search'
 gem 'devise_invitable'
 # For WYSIWYG editor
 gem 'ckeditor'
+# For country select
+gem 'country_select'
+# For stripe payment integration
+gem 'stripe'
+# For ActiveStorage Validations
+gem 'active_storage_validations'
+gem 'mini_magick'
+
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
