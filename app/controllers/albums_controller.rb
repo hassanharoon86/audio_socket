@@ -36,8 +36,6 @@ class AlbumsController < ApplicationController
   end
 
   def verify_artist_user
-    if !current_user.artist?
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user.artist?
   end
 end
