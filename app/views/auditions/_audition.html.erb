@@ -1,31 +1,24 @@
 <tr id="tr<%= audition.id %>">
   <th scope="row"><%= audition.id %></th>
 
-  <td><%= audition.first_name + " " + audition.last_name %></td>
+  <td><%= audition.full_name %></td>
 
   <td><%= audition.artist_name %></td>
 
   <td><%= audition.email %></td>
 
-  <td>
-    <% audition.genres.each do |genre| %>
-      <% if !(genre.equal?(audition.genres.last)) %>
-        <%= genre + "," %>
-      <% else %>
-        <%= genre %>
-      <% end %>
-    <% end %>
-  </td>
+  <td><%= audition.genres.join(', ') %></td>
 
   <td><%= audition.created_at.strftime("%d %b %Y %I:%M %p") %></td>
 
-  <% if audition.user_id %>
-    <td><%= audition.user.email.split('@').first %></td>
+  <% if audition.user_id == nil %>
+    <td><%= select_tag :assigned_to, options_for_select(User.manager.map{ |u| [u.get_username, u.email] }), class: 'form-control manager-selection', data: { audition_id: audition.id }, prompt: 'Select Manager' %></td>
   <% else %>
-    <td><%= select_tag :assigned_to, options_for_select(User.where(role: 1).map{ |u| u.email.split('@').first }), class: 'form-control manager-selection', data: { audition_id: audition.id }, prompt: 'Select Manager' %></td>
+    <td><%= audition.user.get_username %></td>
   <% end %>
 
   <td><%= audition.status.titleize %></td>
 
-  <td><%= link_to 'View', audition_path(audition), class: "btn btn-outline-secondary", id: 'view'+audition.id.to_s, data: { bs_toggle: 'modal', bs_target: '#auditionModal', remote: true } %></td>
+  <td><%= link_to 'View', audition_path(audition), class: "btn btn-outline-secondary", data: { bs_toggle: 'modal', bs_target: '#auditionModal', remote: true } %></td>
 </tr>
+

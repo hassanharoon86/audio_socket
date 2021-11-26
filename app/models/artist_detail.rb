@@ -1,4 +1,6 @@
 class ArtistDetail < ApplicationRecord
+  CHARGES_IN_CENTS = 500
+
   belongs_to :user, -> { where role: :artist }
   has_one_attached :image
   has_many :links, as: :linkable, dependent: :destroy

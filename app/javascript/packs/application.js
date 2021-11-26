@@ -8,9 +8,9 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 require("@nathanvda/cocoon")
-require("packs/audition_submission")
-require("packs/manager")
-require("packs/audition")
+require("./audition_submission")
+require("./manager")
+require("./audition")
 
 import 'bootstrap'
 import "@fortawesome/fontawesome-free/js/all";
