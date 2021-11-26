@@ -39,7 +39,7 @@
     <%= link_to_add_association 'Add link', f, :links, class: 'btn btn-outline-secondary', force_non_association_create: true %><br>
   </div>
 
-  <% if @artist_detail.is_pro == true %>
+  <% if @artist_detail.is_pro? %>
     <div class="mb-3 actions d-flex justify-content-center">
       <%= link_to 'UPGRADE TO PRO', 'javascipt:void(0)', class: 'btn btn-secondary disabled' %><br>
     </div>
