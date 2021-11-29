@@ -36,7 +36,7 @@ class ArtistDetailsController < ApplicationController
 
   def edit
     @artist_detail = get_artist_detail
-    if @artist_detail.is_pro != true
+    if !@artist_detail.is_pro
       @artist_detail.is_pro = is_param_pro?
     end
   end
