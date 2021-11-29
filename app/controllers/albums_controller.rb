@@ -1,8 +1,8 @@
 class AlbumsController < ApplicationController
   before_action :authenticate_user!
   before_action :verify_artist_user
-
   before_action :find_album, except: [:index, :new, :create]
+  before_action :ensure_no_track_submitted, only: [:update, :destroy]
 
   def index; end
 
@@ -13,27 +13,24 @@ class AlbumsController < ApplicationController
   def create
     @album = current_user.albums.build(album_params)
     @album.save
-    respond_to do |format|
-      format.js
-    end
   end
 
   def edit; end
 
   def update
-    if !@album.tracks.exists?(is_submitted: true)
-      @album.update(album_params)
-      @albums = current_user.albums
-    end
+    @album.update(album_params)
+    @albums = current_user.albums
   end
 
   def destroy
-    if !@album.tracks.exists?(is_submitted: true)
-      @album.destroy
-    end
+    @album.destroy
   end
 
   private
+
+  def ensure_no_track_submitted
+    return unless !@album.tracks.exists?(is_submitted: true)
+  end
 
   def find_album
     @album = current_user.albums.find(params[:id])
