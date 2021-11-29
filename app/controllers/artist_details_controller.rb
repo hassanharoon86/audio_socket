@@ -24,7 +24,7 @@ class ArtistDetailsController < ApplicationController
   def update
     @artist_detail = get_artist_detail
     @artist_detail.assign_attributes(artist_detail_params)
-    @artist_detail.is_pro = is_param_done? if !@artist_detail.is_pro
+    @artist_detail.is_pro = is_param_done? if !is_artist_pro?
     if @artist_detail.save
       redirect_to new_charge_path(user_id: current_user.id) and return if is_param_pro?
 
@@ -36,10 +36,14 @@ class ArtistDetailsController < ApplicationController
 
   def edit
     @artist_detail = get_artist_detail
-    @artist_detail.is_pro = is_param_pro? if !@artist_detail.is_pro
+    @artist_detail.is_pro = is_param_pro? if !is_artist_pro?
   end
 
   private
+
+  def is_artist_pro?
+    return @artist_detail.is_pro
+  end
 
   def find_audition
     @audition = Audition.find_by(email: current_user.email)
