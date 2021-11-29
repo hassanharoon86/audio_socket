@@ -29,7 +29,9 @@ class AlbumsController < ApplicationController
   private
 
   def ensure_no_track_submitted
-    return unless !@album.tracks.exists?(is_submitted: true)
+    return unless @album.tracks.exists?
+
+    redirect_to user_albums_path, notice: "Can't edit/delete this album" if @album.tracks(is_submitted: true)
   end
 
   def find_album

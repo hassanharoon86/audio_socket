@@ -18,7 +18,7 @@
   </div>
 
   <div class="modal-footer d-flex justify-content-center">
-    <%= f.button 'ADD TO ALBUM AND SAVE', type: 'submit', class: 'btn btn-secondary mb-3', name: "is_submitted", value: "false" %>
-    <%= f.button 'ADD TO ALBUM AND SUBMIT', type: 'submit', class: 'btn btn-light', name: "is_submitted", value: "true" %>
+    <%= f.button 'ADD TO ALBUM AND SAVE', type: 'submit', class: 'btn btn-secondary mb-3' %>
+    <%= f.button 'ADD TO ALBUM AND SUBMIT', type: 'submit', class: 'btn btn-light', name: "track[is_submitted]", value: "true" %>
   </div>
 <% end %>

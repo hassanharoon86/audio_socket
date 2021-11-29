@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :find_album, only: [:index, :new, :create]
+  before_action :find_album
   before_action :find_track, except: [:index, :new, :create]
 
   def index; end
@@ -10,14 +10,13 @@ class TracksController < ApplicationController
 
   def create
     @track = @album.tracks.build(track_params)
-    @track.is_submitted = params[:is_submitted]
     if !@track.save
       render 'new'
     end
   end
 
   def edit
-    if !@track.is_submitted == true
+    if !@track.is_submitted
       respond_to do |format|
         format.js
       end
@@ -25,8 +24,7 @@ class TracksController < ApplicationController
   end
 
   def update
-    if !@track.is_submitted == true
-      @track.is_submitted = params[:is_submitted]
+    if !@track.is_submitted
       if !@track.update(track_params)
         render 'edit'
       end
@@ -40,6 +38,7 @@ class TracksController < ApplicationController
   private
 
   def find_track
+    byebug
     @track = Track.find(params[:id])
   end
 
@@ -48,6 +47,6 @@ class TracksController < ApplicationController
   end
 
   def track_params
-    params.require(:track).permit(:title, :track)
+    params.require(:track).permit(:title, :track, :is_submitted)
   end
 end
