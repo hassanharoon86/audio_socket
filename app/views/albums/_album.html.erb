@@ -1,8 +1,14 @@
-<tr id="tr<%= album.id %>">
-  <td><%= album.title %></td>
-    <td class="w-100 d-flex justify-content-end">
-      <%= link_to 'Edit', edit_user_album_path(user_id: params[:user_id], id: album.id), class: "btn btn-outline-primary edit", remote: true %>
-
+<tr>
+  <td class="w-100">
+    <%= link_to album.title, user_album_tracks_path(current_user, album) %>
+  </td>
+  <td class="d-flex justify-content-end">
+    <% if !album.tracks.exists?(is_submitted: true) %>
+      <%= link_to 'Edit', edit_user_album_path(current_user, album), class: "btn btn-outline-primary edit", remote: true %>
       <%= link_to 'Destroy', user_album_path(user_id: params[:user_id], id: album.id), method: :delete, class: "btn btn-outline-danger mx-1 delete", remote: true %>
-    </td>
+    <% else %>
+      <%= link_to 'Edit', nil, class: "btn btn-outline-primary disabled" %>
+      <%= link_to 'Destroy', nil, class: "btn btn-outline-danger mx-1 disabled" %>
+    <% end %>
+  </td>
 </tr>

@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="TrackModalLabel">Edit Track</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<%= form_for @track, url: user_album_track_path(album_id: @album.id, id: @track.id), remote: true do |f| %>
+  <div class="modal-body mb-5">
+    <div class="mb-3">
+      <%= f.label :title, 'Track Title', autocomplete: "title" %>
+      <%= f.text_field :title, class: 'form-control', autocomplete: "title", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :track, 'Select Track', autocomplete: "track" %>
+      <%= f.file_field :track, class: "form-control", autofocus: true %>
+      <i><%= f.label :track, '*Please submit music files (WAV or MP3)' %></i>
+    </div>
+  </div>
+
+  <div class="modal-footer d-flex justify-content-center">
+    <%= f.button 'SAVE CHANGES', class: 'btn btn-secondary' %>
+    <%= f.button 'SAVE AND SUBMIT', class: 'btn btn-light', name: "track[is_submitted]", value: "true" %>
+  </div>
+<% end %>

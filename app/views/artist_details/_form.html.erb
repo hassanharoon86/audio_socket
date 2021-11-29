@@ -50,7 +50,7 @@
   <% end %>
 
   <div class="mb-3 actions d-flex justify-content-center">
-    <% if params[:is_pro] == 'true' %>
+    <% if params[:is_pro] == 'true' || @artist_detail.is_pro == true %>
       <%= f.button 'SAVE', type: 'submit', class: "btn btn-secondary mx-2", name: "is_pro", value: "done" %>
 
     <% else %>

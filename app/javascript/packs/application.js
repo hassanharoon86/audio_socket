@@ -11,6 +11,7 @@ require("@nathanvda/cocoon")
 require("./audition_submission")
 require("./manager")
 require("./audition")
+require("./album")
 
 import 'bootstrap'
 import "@fortawesome/fontawesome-free/js/all";

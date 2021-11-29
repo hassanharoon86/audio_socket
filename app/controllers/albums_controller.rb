@@ -2,6 +2,7 @@ class AlbumsController < ApplicationController
   before_action :authenticate_user!
   before_action :verify_artist_user
   before_action :find_album, except: [:index, :new, :create]
+  before_action :ensure_no_track_submitted, only: [:update, :destroy]
 
   def index; end
 
@@ -26,6 +27,12 @@ class AlbumsController < ApplicationController
   end
 
   private
+
+  def ensure_no_track_submitted
+    return unless @album.tracks.exists?
+
+    redirect_to user_albums_path, notice: "Can't edit/delete this album" if @album.tracks.exists?(is_submitted: true)
+  end
 
   def find_album
     @album = current_user.albums.find(params[:id])

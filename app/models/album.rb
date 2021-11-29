@@ -1,6 +1,7 @@
 class Album < ApplicationRecord
   belongs_to :user, -> { where role: :artist }
   has_one_attached :artwork
+  has_many :tracks, dependent: :destroy
 
   default_scope { order(:id) }
 

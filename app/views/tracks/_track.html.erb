@@ -1,0 +1,21 @@
+<tr>
+  <td><%= track.title %></td>
+
+  <td>
+    <% if track.track.attached? %>
+      <audio controls class="track-controls-height">
+        <source src="<%= rails_blob_url(track.track) %>" type="<%= track.track.content_type %>"/>
+      </audio>
+    <% end %>
+  </td>
+
+  <td class="w-100 d-flex justify-content-end">
+    <% unless track.is_submitted %>
+      <%= link_to 'Edit', edit_user_album_track_path(album_id: @album.id, id: track.id), class: "btn btn-outline-primary edit", remote: true %>
+      <%= link_to 'Destroy', user_album_track_path(album_id: @album.id, id: track.id), method: :delete, class: "btn btn-outline-danger mx-1 delete", remote: true %>
+    <% else %>
+      <%= link_to 'Edit', nil, class: 'btn btn-outline-primary disabled' %>
+      <%= link_to 'Destroy', nil, class: 'btn btn-outline-danger mx-1 disabled' %>
+    <% end %>
+  </td>
+</tr>
