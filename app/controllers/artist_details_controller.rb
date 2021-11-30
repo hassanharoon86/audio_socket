@@ -1,6 +1,7 @@
 class ArtistDetailsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_audition
+  before_action :verify_artist_user
 
   def new
     @artist_detail = get_artist_detail
@@ -36,7 +37,6 @@ class ArtistDetailsController < ApplicationController
 
   def edit
     @artist_detail = get_artist_detail
-    @artist_detail.is_pro = is_param_pro? unless is_artist_pro?
   end
 
   private

@@ -41,8 +41,4 @@ class AlbumsController < ApplicationController
   def album_params
     params.require(:album).permit(:title, :artwork)
   end
-
-  def verify_artist_user
-    redirect_to root_path unless current_user.artist?
-  end
 end

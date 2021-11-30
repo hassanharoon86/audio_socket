@@ -1,6 +1,7 @@
 class TracksController < ApplicationController
   before_action :find_album
   before_action :find_track, except: [:index, :new, :create]
+  before_action :verify_artist_user
 
   def index; end
 

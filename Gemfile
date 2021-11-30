@@ -40,6 +40,8 @@ gem 'stripe'
 gem 'active_storage_validations'
 gem 'mini_magick'
 gem "image_processing"
+# For implementing interactor
+gem "interactor-rails"
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
