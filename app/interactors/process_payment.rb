@@ -2,20 +2,16 @@ class ProcessPayment
   include Interactor
 
   def call
-    stripeEmail = context.stripeEmail
-    stripeToken = context.stripeToken
-
-    @amount = ArtistDetail::CHARGES_IN_CENTS
+    byebug
 
     customer = Stripe::Customer.create(
-      email: stripeEmail,
-      source: stripeToken
+      email: context.stripeEmail,
+      source: context.stripeToken
     )
 
     charge = Stripe::Charge.create(
       customer: customer.id,
-      amount: @amount,
-      description: 'Rails Stripe customer',
+      amount: ArtistDetail::CHARGES_IN_CENTS,
       currency: :usd
     )
 
