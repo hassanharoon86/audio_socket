@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :setup_profile
+  before_action :verify_artist_user
 
   def index; end
 

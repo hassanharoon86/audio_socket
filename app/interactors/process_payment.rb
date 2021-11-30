@@ -1,8 +1,7 @@
-class Payment
+class ProcessPayment
   include Interactor
 
   def call
-    byebug
     stripeEmail = context.stripeEmail
     stripeToken = context.stripeToken
 
@@ -17,11 +16,10 @@ class Payment
       customer: customer.id,
       amount: @amount,
       description: 'Rails Stripe customer',
-      currency: 'usd'
+      currency: :usd
     )
 
   rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_charge_path
+    redirect_to new_charge_path, alert: e.message
   end
 end

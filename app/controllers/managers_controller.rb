@@ -31,8 +31,4 @@ class ManagersController < ApplicationController
     file_name += "-#{params[:query]}" if params[:query].present?
     file_name += "-#{Date.today}.csv"
   end
-
-  def verify_manager_user
-    redirect_to root_path if !current_user.manager?
-  end
 end
