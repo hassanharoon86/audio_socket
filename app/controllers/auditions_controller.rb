@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
 class AuditionsController < ApplicationController
-  before_action :find_audition, except: [:new, :create]
+  before_action :find_audition, except: %i[new create]
+  before_action :auditions, only: [:update_status_and_send_invite]
+  before_action :status_valid?, only: [:update_status_and_send_invite]
+  before_action :manager_valid?, only: [:update_status_and_send_invite]
 
   def new
     @audition = Audition.new
@@ -20,30 +25,32 @@ class AuditionsController < ApplicationController
   def show_email_modal; end
 
   def update_status_and_send_invite
-    @auditions = Audition.all.order(:id)
-    @audition = Audition.find(params[:id])
     @content = params[:content]
 
-    if current_user == @audition.user
-      @audition.status = Audition.statuses.keys[params[:value].to_i] if params[:value].present?
-      if @audition.save
-        if @audition.rejected?
-          AuditionMailer.audition_update(@audition, @content).deliver_now
-        elsif @audition.accepted?
-          User.invite!({email: @audition.email}, nil, {content: @content})
-        end
-      end
-    end
+    return unless @audition.send("#{params[:value]}!")
+
+    AuditionMailer.audition_update(@audition, @content).deliver_now if @audition.rejected?
+    User.invite!({ email: @audition.email }, nil, { content: @content }) if @audition.accepted?
   end
 
   def update_assigned_to
     @audition.user = User.find_by_email(params[:assigned_to])
-    if @audition.save
-      AuditionMailer.audition_assign(@audition.user.email, @audition).deliver_now
-    end
+    AuditionMailer.audition_assign(@audition.user.email, @audition).deliver_now if @audition.save
   end
 
   private
+
+  def manager_valid?
+    current_user == @audition.user
+  end
+
+  def auditions
+    @auditions = Audition.order(:id)
+  end
+
+  def status_valid?
+    params[:value].to_sym.in?(Audition.statuses.keys)
+  end
 
   def find_audition
     @audition = Audition.find(params[:id])
@@ -58,7 +65,7 @@ class AuditionsController < ApplicationController
       :hear_about,
       :additional_info,
       :other_source,
-      links_attributes: [:id, :link, :_destroy],
+      links_attributes: %i[id link _destroy],
       genres: []
     )
   end

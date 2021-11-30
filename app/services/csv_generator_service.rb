@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CsvGeneratorService
   attr_accessor :collection
 

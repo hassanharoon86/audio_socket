@@ -12,9 +12,9 @@
   <td><%= audition.created_at.strftime("%d %b %Y %I:%M %p") %></td>
 
   <% if audition.user_id == nil %>
-    <td><%= select_tag :assigned_to, options_for_select(User.manager.map{ |u| [u.get_username, u.email] }), class: 'form-control manager-selection', data: { audition_id: audition.id }, prompt: 'Select Manager' %></td>
+    <td><%= select_tag :assigned_to, options_for_select(User.manager.map{ |u| [u.username, u.email] }), class: 'form-control manager-selection', data: { audition_id: audition.id }, prompt: 'Select Manager' %></td>
   <% else %>
-    <td><%= audition.user.get_username %></td>
+    <td><%= audition.user.username %></td>
   <% end %>
 
   <td><%= audition.status.titleize %></td>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
@@ -5,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :artists
   resources :managers
-  resources :charges, only: [:new, :create]
+  resources :charges, only: %i[new create]
 
   resources :users do
     resource :artist_detail
@@ -16,13 +18,13 @@ Rails.application.routes.draw do
   end
   resolve('ArtistDetail') { [:artist_detail] }
 
-  resources :auditions, only: [:new, :create, :show] do
+  resources :auditions, only: %i[new create show] do
     collection do
       get '/', to: 'auditions#new'
     end
   end
 
-  get 'update_status_and_send_invite', to: "auditions#update_status_and_send_invite"
-  get 'update_assigned_to', to: "auditions#update_assigned_to"
-  get 'show_email_modal', to: "auditions#show_email_modal"
+  get 'update_status_and_send_invite', to: 'auditions#update_status_and_send_invite'
+  get 'update_assigned_to', to: 'auditions#update_assigned_to'
+  get 'show_email_modal', to: 'auditions#show_email_modal'
 end

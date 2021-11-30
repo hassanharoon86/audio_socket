@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class ArtistDetailsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_audition
   before_action :verify_artist_user
 
   def new
-    @artist_detail = get_artist_detail
-    @artist_detail.is_pro = is_param_pro?
+    @artist_detail = artist_detail
+    @artist_detail.is_pro = param_pro?
     @artist_detail.artist_name = @audition.artist_name
     @artist_detail.links.build
   end
@@ -14,7 +16,7 @@ class ArtistDetailsController < ApplicationController
     @artist_detail = current_user.build_artist_detail(artist_detail_params)
     @artist_detail.artist_name = @audition.artist_name
     if @artist_detail.save
-      redirect_to new_charge_path(user_id: current_user.id) and return if is_param_pro?
+      redirect_to new_charge_path(user_id: current_user.id) and return if param_pro?
 
       redirect_to root_path
     else
@@ -23,11 +25,11 @@ class ArtistDetailsController < ApplicationController
   end
 
   def update
-    @artist_detail = get_artist_detail
+    @artist_detail = artist_detail
     @artist_detail.assign_attributes(artist_detail_params)
-    @artist_detail.is_pro = is_param_done? unless is_artist_pro?
+    @artist_detail.is_pro = param_done? unless artist?
     if @artist_detail.save
-      redirect_to new_charge_path(user_id: current_user.id) and return if is_param_pro?
+      redirect_to new_charge_path(user_id: current_user.id) and return if param_pro?
 
       redirect_to root_path
     else
@@ -36,28 +38,28 @@ class ArtistDetailsController < ApplicationController
   end
 
   def edit
-    @artist_detail = get_artist_detail
+    @artist_detail = artist_detail
   end
 
   private
 
-  def is_artist_pro?
-    return @artist_detail.is_pro
+  def artist?
+    @artist_detail.is_pro
   end
 
   def find_audition
     @audition = Audition.find_by(email: current_user.email)
   end
 
-  def is_param_pro?
+  def param_pro?
     params[:is_pro].present? && params[:is_pro] == 'true'
   end
 
-  def is_param_done?
+  def param_done?
     params[:is_pro].present? && params[:is_pro] == 'done'
   end
 
-  def get_artist_detail
+  def artist_detail
     current_user.artist_detail || current_user.build_artist_detail(email: current_user.email)
   end
 
@@ -69,7 +71,7 @@ class ArtistDetailsController < ApplicationController
       :bio,
       :website_link,
       :image,
-      links_attributes: [:id, :link, :_destroy],
+      links_attributes: %i[id link _destroy],
       social_links: []
     )
   end

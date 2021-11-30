@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuditionMailer < ApplicationMailer
   default from: 'no-reply@audiosocket.com'
 
