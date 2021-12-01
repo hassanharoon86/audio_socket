@@ -9,16 +9,23 @@ class SortingService
   end
 
   def call
-    self.records = records.search(params[:query]) if params[:query].present?
-
-    self.records = records.order(params[:sorting_column] => params[:sorting_direction]) if params[:sorting_column].present?
-
-    if params[:scope].in? Audition.statuses
-      self.records = records.pending if params[:scope] == 'pending'
-      self.records = records.accepted if params[:scope] == 'accepted'
-      self.records = records.rejected if params[:scope] == 'rejected'
-      self.records = records.deleted if params[:scope] == 'deleted'
-    end
+    search
+    order
+    scope
     records
+  end
+
+  private
+
+  def search
+    self.records = records.search(params[:query]) if params[:query].present?
+  end
+
+  def order
+    self.records = records.reorder(params[:sorting_column] => params[:sorting_direction]) if params[:sorting_column]
+  end
+
+  def scope
+    self.records = records.send(params[:scope]) if params[:scope].in? Audition.statuses
   end
 end
