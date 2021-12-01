@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class AlbumsController < ApplicationController
   before_action :authenticate_user!
   before_action :verify_artist_user
-  before_action :find_album, except: [:index, :new, :create]
-  before_action :ensure_no_track_submitted, only: [:update, :destroy]
+  before_action :find_album, except: %i[index new create]
+  before_action :ensure_no_track_submitted, only: %i[update destroy]
 
   def index; end
 

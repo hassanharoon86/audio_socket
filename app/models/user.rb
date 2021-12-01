@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
-  PASSWORD_REGEX = /(?=.{8,})(?=.*[A-Z])(?=.*[[:^alnum:]])/
+  PASSWORD_REGEX = /(?=.{8,})(?=.*[A-Z])(?=.*[[:^alnum:]])/.freeze
 
-  enum role: [:artist, :manager]
+  enum role: %i[artist manager]
 
   has_many :auditions, dependent: :nullify
   has_one :artist_detail, dependent: :destroy
@@ -16,8 +18,8 @@ class User < ApplicationRecord
 
   before_create :set_default_role
 
-  def get_username
-    self.email.split('@').first
+  def username
+    email.split('@').first
   end
 
   private

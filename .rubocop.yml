@@ -1,0 +1,11 @@
+require: rubocop
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/*'
+Style/Documentation:
+  Enabled: false
+Lint/UselessAssignment:
+  Enabled: false

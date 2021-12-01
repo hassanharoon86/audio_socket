@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class TracksController < ApplicationController
   before_action :find_album
-  before_action :find_track, except: [:index, :new, :create]
+  before_action :find_track, except: %i[index new create]
   before_action :verify_artist_user
 
   def index; end
@@ -11,25 +13,19 @@ class TracksController < ApplicationController
 
   def create
     @track = @album.tracks.build(track_params)
-    if !@track.save
-      render 'new'
-    end
+    render 'new' unless @track.save
   end
 
   def edit
-    if !@track.is_submitted
-      respond_to do |format|
-        format.js
-      end
+    return if @track.is_submitted
+
+    respond_to do |format|
+      format.js
     end
   end
 
   def update
-    if !@track.is_submitted
-      if !@track.update(track_params)
-        render 'edit'
-      end
-    end
+    render 'edit' if !@track.is_submitted && !@track.update(track_params)
   end
 
   def destroy
@@ -39,7 +35,6 @@ class TracksController < ApplicationController
   private
 
   def find_track
-    byebug
     @track = Track.find(params[:id])
   end
 
